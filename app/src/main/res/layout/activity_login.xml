@@ -1,9 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".LoginActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/backbutton"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="로그인"
+        android:textColor="@color/grey_black"
+        android:fontFamily="@font/nbold"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:text="이메일 주소"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="30dp"
+        android:fontFamily="@font/nbold"
+        android:textColor="@color/grey_black"
+        />
+
+    <EditText
+        android:id="@+id/login_email"
+        android:hint="이메일을 입력하세요"
+        android:textSize="10sp"
+        android:inputType="text"
+        android:fontFamily="@font/nbold"
+        android:background="@null"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:text="비밀번호"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:fontFamily="@font/nbold"
+        android:textColor="@color/grey_black"
+        />
+
+    <EditText
+        android:id="@+id/login_password"
+        android:hint="비밀번호를 입력하세요"
+        android:inputType="textPassword"
+        android:textSize="10sp"
+        android:fontFamily="@font/nbold"
+        android:background="@null"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"/>
+
+    <Button
+        android:id="@+id/loginbutton"
+        android:layout_gravity="center"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:text="로그인"
+        android:textSize="12sp"
+        android:letterSpacing="0.4"
+        android:textColor="@color/grey_black"
+        android:fontFamily="@font/nbold"
+        android:gravity="center"
+        />
+
+</LinearLayout>
