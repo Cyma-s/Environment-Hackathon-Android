@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Maesilnamu</string>
-    <string name="url">http://ec2-52-78-112-219.ap-northeast-2.compute.amazonaws.com:3000</string>
+    <string name="url">http://ce13ed4f9cbd.ngrok.io</string>
 </resources>
