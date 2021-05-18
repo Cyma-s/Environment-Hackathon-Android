@@ -15,9 +15,51 @@
         android:layout_marginStart="20dp"
         android:src="@drawable/menubutton"/>
 
+    <ImageView
+        android:id="@+id/treeImage"
+        android:layout_marginTop="20dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/treeName"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="treeName" />
+
+    <TextView
+        android:id="@+id/treeExp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="treeExp" />
+
+    <TextView
+        android:id="@+id/treeLevel"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="treeLevel" />
+
+    <TextView
+        android:id="@+id/maxExp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="maxExp" />
+
+    <TextView
+        android:id="@+id/maxLevel"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="maxLevel" />
 
     <Button
         android:id="@+id/mission_connect"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="미션 게시판으로 이동"
