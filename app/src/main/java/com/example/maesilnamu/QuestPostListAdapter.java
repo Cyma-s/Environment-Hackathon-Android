@@ -47,6 +47,10 @@ public class QuestPostListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
+    public void addPost(QuestPost questPost) {
+        list.add(questPost);
+    }
+
     @Override
     public int getItemViewType(int position) {
         return list.get(position) == null ? VIEW_PROG : VIEW_ITEM;
@@ -76,7 +80,8 @@ public class QuestPostListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
 
         public void setItem(QuestPost post){
-            isAuth.setText(post.getAuthNum());
+            String authNum = String.valueOf(post.getAuthNum());
+            isAuth.setText(authNum);
             postTitle.setText(post.getPostTitle());
             postContent.setText(post.getPostContent());
         }
