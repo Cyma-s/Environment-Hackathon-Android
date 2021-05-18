@@ -18,7 +18,7 @@ public class HomeActivity extends AppCompatActivity {
         missionConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, QuestCommunityActivity.class);
+                Intent intent = new Intent(HomeActivity.this, QuestPostWriteActivity.class);
                 finish();
                 startActivity(intent);
             }
