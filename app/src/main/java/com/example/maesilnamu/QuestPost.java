@@ -1,9 +1,10 @@
 package com.example.maesilnamu;
 
 public class QuestPost {
-    private String questName, postTitle, postContent, date, userName, authNum, commentNum;
+    private String questName, postTitle, postContent, date, userName, authNum;
+    private int commentNum;
 
-    public QuestPost(String questName, String postTitle, String postContent, String date, String userName, String authNum, String commentNum) {
+    public QuestPost(String questName, String postTitle, String postContent, String date, String userName, String authNum, int commentNum) {
         this.questName = questName;
         this.postTitle = postTitle;
         this.postContent = postContent;
@@ -61,11 +62,11 @@ public class QuestPost {
         this.authNum = authNum;
     }
 
-    public String getCommentNum() {
+    public int getCommentNum() {
         return commentNum;
     }
 
-    public void setCommentNum(String commentNum) {
+    public void setCommentNum(int commentNum) {
         this.commentNum = commentNum;
     }
 }
