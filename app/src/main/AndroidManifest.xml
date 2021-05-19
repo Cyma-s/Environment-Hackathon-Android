@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Maesilnamu">
+        <activity android:name=".SignUpCreateProfile" />
         <activity android:name=".QuestPostWriteActivity" />
         <activity android:name=".QuestCommunityActivity" />
         <activity android:name=".HomeActivity" />

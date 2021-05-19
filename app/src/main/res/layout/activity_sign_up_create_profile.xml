@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="회원가입"
+        android:text="프로필 설정"
         android:fontFamily="@font/nbold"
         android:textColor="@color/grey_black"
         android:textSize="25sp"
@@ -30,7 +30,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="이메일 주소"
+        android:text="프로필 사진"
         android:fontFamily="@font/nbold"
         android:textColor="@color/grey_black"
         android:textSize="15sp"
@@ -38,22 +38,66 @@
         android:layout_marginLeft="30dp"
         />
 
-    <EditText
-        android:id="@+id/signup_email"
-        android:hint="이메일을 입력하세요"
-        android:textSize="10sp"
-        android:inputType="text"
-        android:fontFamily="@font/nbold"
-        android:background="@null"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="30dp"
-        />
+    <ImageView
+        android:id=""
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="비밀번호"
+        android:text="닉네임"
+        android:fontFamily="@font/nbold"
+        android:textColor="@color/grey_black"
+        android:textSize="15sp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/signup_nickname"
+            android:hint="닉네임을 입력하세요"
+            android:textSize="10sp"
+            android:inputType="text"
+            android:fontFamily="@font/nbold"
+            android:background="@null"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="end">
+
+            <ImageView
+                android:id="@+id/signup_validity_check_button"
+                android:layout_width="60dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/validitycheckbutton"
+                android:textColor="@color/grey_black"
+                android:fontFamily="@font/nbold"
+                android:gravity="center"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="지역"
         android:fontFamily="@font/nbold"
         android:textColor="@color/grey_black"
         android:textSize="15sp"
@@ -62,31 +106,8 @@
         />
 
     <EditText
-        android:id="@+id/signup_password"
-        android:hint="이메일을 입력하세요"
-        android:textSize="10sp"
-        android:inputType="text"
-        android:fontFamily="@font/nbold"
-        android:background="@null"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="30dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="비밀번호 확인"
-        android:fontFamily="@font/nbold"
-        android:textColor="@color/grey_black"
-        android:textSize="15sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
-        />
-
-    <EditText
-        android:id="@+id/signup_passwordconfigure"
-        android:hint="이메일을 입력하세요"
+        android:id="@+id/signup_location"
+        android:hint="지역을 입력하세요"
         android:textSize="10sp"
         android:inputType="text"
         android:fontFamily="@font/nbold"
@@ -97,12 +118,12 @@
         />
 
     <Button
-        android:id="@+id/nextbutton"
+        android:id="@+id/signup_button"
         android:layout_gravity="center"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
-        android:text="다음"
+        android:text="회원가입"
         android:textSize="12sp"
         android:letterSpacing="0.4"
         android:textColor="@color/grey_black"
