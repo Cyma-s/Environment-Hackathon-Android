@@ -149,7 +149,7 @@ public class QuestPostWriteActivity extends AppCompatActivity {
 
     public String bitmapToString(Bitmap bitmap){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, baos);
         byte[] imageBytes = baos.toByteArray();
         String imageString = Base64.getEncoder().encodeToString(imageBytes);
         return imageString;
