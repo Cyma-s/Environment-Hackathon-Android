@@ -40,13 +40,23 @@
 
     <EditText
         android:id="@+id/signup_email"
-        android:hint="이메일을 입력하세요"
+        android:hint="이메일 주소를 입력하세요"
         android:textSize="10sp"
         android:inputType="text"
         android:fontFamily="@font/nbold"
         android:background="@null"
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <TextView
+        android:id="@+id/error_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이메일 형식으로 입력해주세요"
+        android:textSize="10sp"
+        android:textColor="#FF0000"
         android:layout_marginLeft="30dp"
         />
 
@@ -63,13 +73,24 @@
 
     <EditText
         android:id="@+id/signup_password"
-        android:hint="이메일을 입력하세요"
+        android:hint="비밀번호를 입력하세요"
         android:textSize="10sp"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:fontFamily="@font/nbold"
         android:background="@null"
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:cursorVisible="true"
+        />
+
+    <TextView
+        android:id="@+id/error_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이메일 형식으로 입력해주세요"
+        android:textSize="10sp"
+        android:textColor="#FF0000"
         android:layout_marginLeft="30dp"
         />
 
@@ -86,13 +107,24 @@
 
     <EditText
         android:id="@+id/signup_passwordconfigure"
-        android:hint="이메일을 입력하세요"
+        android:hint="비밀번호를 다시 한 번 입력하세요"
         android:textSize="10sp"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:fontFamily="@font/nbold"
         android:background="@null"
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:cursorVisible="true"
+        />
+
+    <TextView
+        android:id="@+id/error_password_configure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이메일 형식으로 입력해주세요"
+        android:textSize="10sp"
+        android:textColor="#FF0000"
         android:layout_marginLeft="30dp"
         />
 
