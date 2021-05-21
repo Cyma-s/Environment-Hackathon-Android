@@ -5,12 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-public class QuestListContentAcitivity extends AppCompatActivity {
+public class QuestListContentActivity extends AppCompatActivity {
     private String postId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +19,7 @@ public class QuestListContentAcitivity extends AppCompatActivity {
         postId = intent.getStringExtra("postId");
 
         String contentUrl = getString(R.string.url) + "/";
-        RequestQueue queue = Volley.newRequestQueue(QuestListContentAcitivity.this);
+        RequestQueue queue = Volley.newRequestQueue(QuestListContentActivity.this);
 
     }
 }

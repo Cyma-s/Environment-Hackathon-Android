@@ -4,17 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate;
 
-import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -27,9 +23,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class QuestCommunityActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -64,7 +57,7 @@ public class QuestCommunityActivity extends AppCompatActivity {
             public void OnItemClick(QuestPostListAdapter.ItemViewHolder holder, View view, int position) {
                 QuestPost post = adapter.getItem(position);
                 id = post.getPostingId();
-                Intent intent = new Intent(QuestCommunityActivity.this, QuestListContentAcitivity.class);
+                Intent intent = new Intent(QuestCommunityActivity.this, QuestListContentActivity.class);
                 intent.putExtra("postId", id);
                 startActivity(intent);
             }
