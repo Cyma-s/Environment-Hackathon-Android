@@ -39,7 +39,6 @@
         />
 
     <ImageView
-        android:id="profile_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center"

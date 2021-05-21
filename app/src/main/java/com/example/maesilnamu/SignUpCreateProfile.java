@@ -3,6 +3,7 @@ package com.example.maesilnamu;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,6 +21,9 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpCreateProfile extends AppCompatActivity {
     private Button signupButton;
@@ -78,8 +83,41 @@ public class SignUpCreateProfile extends AppCompatActivity {
                 queue.add(jsonObjectRequest);
             }
 
-            private void signUp() {
+            private void saveToken(JSONObject response) throws JSONException {
+                SharedPreferences sharedPreferences = getSharedPreferences("token", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Authorization", response.get("access_token").toString());
+                editor.apply();
+            }
 
+            private void signUp(){
+                SharedPreferences sharedPreferences = getSharedPreferences("token", MODE_PRIVATE);
+                String token = sharedPreferences.getString("Authorization", "");
+                String url = getString(R.string.url) + "/profile";
+                RequestQueue queue = Volley.newRequestQueue(SignUpCreateProfile.this);
+
+                final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Intent intent = new Intent(SignUpCreateProfile.this, MainActivity.class);
+                                finish();
+                                startActivity(intent);
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(SignUpCreateProfile.this, "오류입니다", Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String> heads = new HashMap<String, String>();
+                        heads.put("Authorization", "Bearer " + token);
+                        return heads;
+                    }
+                };
+                queue.add(jsonObjectRequest);
             }
         });
 
