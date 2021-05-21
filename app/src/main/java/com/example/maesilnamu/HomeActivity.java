@@ -55,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, QuestPostWriteActivity.class);
-                finish();
+                //finish();
                 startActivity(intent);
             }
         });
@@ -63,7 +63,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, QuestPostWriteActivity.class);
-                finish();
+                //finish();
                 startActivity(intent);
             }
         });

@@ -3,11 +3,12 @@ package com.example.maesilnamu;
 import androidx.annotation.NonNull;
 
 public class QuestPost {
-    private String questName, postTitle, postContent, date, userName, picture, type;
+    private String questName, postTitle, postContent, date, userName, picture, type, postingId;
     private int pictureNum, reviewNum, authNum;
 
-    public QuestPost(String questName, String postTitle, String postContent, String picture, String date, String userName,
+    public QuestPost(String postingId, String questName, String postTitle, String postContent, String picture, String date, String userName,
                      int authNum, int pictureNum, int reviewNum, String type) {
+        this.postingId = postingId;
         this.questName = questName;
         this.postTitle = postTitle;
         this.postContent = postContent;
@@ -79,6 +80,15 @@ public class QuestPost {
 
     public String getDate() {
         return date;
+    }
+
+
+    public String getPostingId() {
+        return postingId;
+    }
+
+    public void setPostingId(String postingId) {
+        this.postingId = postingId;
     }
 
     @NonNull
