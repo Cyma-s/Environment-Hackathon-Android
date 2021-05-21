@@ -50,6 +50,7 @@
             tools:layout_editor_absoluteY="61dp">
 
             <TextView
+                android:id="@+id/nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="닉네임"
@@ -78,6 +79,7 @@
                     android:textSize="15sp" />
 
                 <TextView
+                    android:id="@+id/rank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -115,6 +117,7 @@
                     android:layout_marginTop="-10dp"
                     android:layout_marginLeft="10dp"/>
                 <TextView
+                    android:id="@+id/token"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="400000"

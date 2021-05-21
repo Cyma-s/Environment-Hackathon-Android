@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 public class MypageActivity extends AppCompatActivity {
     private RecyclerView recyclerView1;
     private RecyclerView recyclerView2;
@@ -35,6 +38,17 @@ public class MypageActivity extends AppCompatActivity {
                 startActivity(back_intent);
             }
         });
+
+    }
+    private int getrank(){
+
+    }
+    private int gettoken(){
+
+    }
+
+    private void getName(){
+
     }
 
 }
