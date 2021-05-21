@@ -18,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Maesilnamu"
         android:usesCleartextTraffic="true">
+        <activity android:name=".SignUpCreateProfile" />
         <activity android:name=".QuestListContentActivity" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".QuestPostWriteActivity" />
         <activity android:name=".QuestCommunityActivity" />
