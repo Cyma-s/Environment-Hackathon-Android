@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SignupActivity">
+    tools:context=".SignUpCreateProfile">
 
     <ImageView
         android:id="@+id/back_button"
@@ -94,6 +94,17 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/nickname_validation"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="인증이 완료되었습니다."
+        android:textSize="10sp"
+        android:textColor="#0000FF"
+        android:layout_marginLeft="30dp"
+        />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="지역"
@@ -104,17 +115,35 @@
         android:layout_marginLeft="30dp"
         />
 
-    <EditText
-        android:id="@+id/signup_location"
-        android:hint="지역을 입력하세요"
-        android:textSize="10sp"
-        android:inputType="text"
-        android:fontFamily="@font/nbold"
-        android:background="@null"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="30dp"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/location_spinner"
+            android:autofillHints="지역을 선택하세요"
+            android:entries="@array/location_array"
+            android:spinnerMode="dropdown"
+            android:layout_marginLeft="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            />
+
+        <EditText
+            android:id="@+id/signup_location"
+            android:hint="지역을 입력하세요"
+            android:textSize="12sp"
+            android:inputType="text"
+            android:fontFamily="@font/nbold"
+            android:background="@null"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/signup_button"

@@ -110,8 +110,19 @@
                 android:gravity="center"
                 />
         </LinearLayout>
+
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/code_validation"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="인증이 완료되었습니다."
+        android:textSize="10sp"
+        android:textColor="#0000FF"
+        android:layout_marginLeft="30dp"
+        />
 
     <TextView
         android:layout_width="wrap_content"

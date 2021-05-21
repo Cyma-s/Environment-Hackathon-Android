@@ -31,7 +31,7 @@ public class SignupActivity extends AppCompatActivity {
     private Button nextButton;
     private ImageView backButton, emailSendButton, codeVerificationButton;
     private EditText emailText, emailConfigureText, passwordText, passwordConfigureText;
-    private TextView emailError, passwordError, passwordErrorConfigure;
+    private TextView emailError, codeVerificationConfigure, passwordError, passwordErrorConfigure;
 
     private boolean checkEmail = false, checkPassword = false, checkCode = false;
     private String address, code;
@@ -54,6 +54,7 @@ public class SignupActivity extends AppCompatActivity {
         emailConfigureText = (EditText) findViewById(R.id.signup_code_verification);
         passwordText = (EditText) findViewById(R.id.signup_password);
         passwordConfigureText = (EditText) findViewById(R.id.signup_passwordconfigure);
+        codeVerificationConfigure = (TextView) findViewById(R.id.code_validation);
         passwordError = (TextView) findViewById((R.id.error_password));
         passwordErrorConfigure = (TextView) findViewById((R.id.error_password_configure));
 
@@ -65,7 +66,7 @@ public class SignupActivity extends AppCompatActivity {
                 String password = passwordText.getText().toString();
                 String passwordConfigure = passwordConfigureText.getText().toString();
 
-                String url = getString(R.string.url)+"/user/"+address;
+                String url = getString(R.string.url)+"/user/validation/email/"+address;
 
                 System.out.println(url);
 
@@ -133,6 +134,7 @@ public class SignupActivity extends AppCompatActivity {
                 String codeInput = emailConfigureText.getText().toString();
 
                 if(codeInput.equals(code)) {
+                    codeVerificationConfigure.setVisibility(View.VISIBLE);
                     checkCode = true;
                 }
             }
