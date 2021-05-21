@@ -21,6 +21,7 @@ public class QuestPostListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private final int VIEW_PROG = 0;
 
     private ArrayList<QuestPost> list;
+    OnQuestPostItemClickListener listener;
 
     public QuestPostListAdapter(ArrayList<QuestPost> list){
         this.list = list;
@@ -31,7 +32,7 @@ public class QuestPostListAdapter extends RecyclerView.Adapter<RecyclerView.View
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if(viewType == VIEW_ITEM){
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.questpost_item, parent, false);
-            return new ItemViewHolder(view);
+            return new ItemViewHolder(view, listener);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.progress_item, parent, false);
             return new LoadingViewHolder(view);
@@ -65,18 +66,40 @@ public class QuestPostListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     }
 
+    public QuestPost getItem(int position) {
+        return list.get(position);
+    }
+
+    public void setItemClickListener(OnQuestPostItemClickListener listener) {
+        this.listener = listener;
+    }
+
     private void addItem(ItemViewHolder holder, int position){
         QuestPost post = list.get(position);
         holder.setItem(post);
     }
 
-    private static class ItemViewHolder extends RecyclerView.ViewHolder {
+    public void OnItemClick(ItemViewHolder holder, View view, int position){
+        if(listener != null){
+            listener.OnItemClick(holder, view, position);
+        }
+    }
+
+    public static class ItemViewHolder extends RecyclerView.ViewHolder {
         public TextView postTitle, postContent, isAuth;
-        public ItemViewHolder(@NonNull View itemView) {
+        public ItemViewHolder(@NonNull View itemView, OnQuestPostItemClickListener listener) {
             super(itemView);
             postContent = (TextView) itemView.findViewById(R.id.post_content);
             postTitle = (TextView) itemView.findViewById(R.id.post_title);
             isAuth = (TextView) itemView.findViewById(R.id.is_auth);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getBindingAdapterPosition();
+                    if(listener != null) listener.OnItemClick(ItemViewHolder.this, v, position);
+                }
+            });
         }
 
         public void setItem(QuestPost post){
@@ -85,6 +108,7 @@ public class QuestPostListAdapter extends RecyclerView.Adapter<RecyclerView.View
             postTitle.setText(post.getPostTitle());
             postContent.setText(post.getPostContent());
         }
+
     }
 
     private static class LoadingViewHolder extends RecyclerView.ViewHolder {

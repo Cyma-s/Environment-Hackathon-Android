@@ -15,21 +15,121 @@
         android:layout_marginStart="20dp"
         android:src="@drawable/menubutton"/>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="336dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/game_background">
 
-    <Button
-        android:id="@+id/mission_connect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="미션 게시판으로 이동"
-        android:fontFamily="@font/nbold"
-        />
+        <ImageView
+            android:id="@+id/treeImage"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/mission_write"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/treeName"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nbold"
-        android:text="글쓰기로 이동"
-        />
+        android:text="treeName" />
+
+    <TextView
+        android:id="@+id/treeExp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="treeExp" />
+
+    <TextView
+        android:id="@+id/treeLevel"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="treeLevel" />
+
+    <TextView
+        android:id="@+id/maxExp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="maxExp" />
+
+    <TextView
+        android:id="@+id/maxLevel"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="maxLevel" />
+
+    <TextView
+        android:id="@+id/userExp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="userExp" />
+
+    <TextView
+        android:id="@+id/userToken"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="매실" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/mission_connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nbold"
+            android:text="미션 게시판으로 이동" />
+
+        <Button
+            android:id="@+id/mission_write"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:fontFamily="@font/nbold"
+            android:gravity="center"
+            android:text="글쓰기로 이동" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/basicTreeSeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="상점-기본나무씨앗" />
+
+        <Button
+            android:id="@+id/winterTreeSeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="상점-겨울나무씨앗" />
+
+        <Button
+            android:id="@+id/expUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="exp Up" />
+    </LinearLayout>
 
 </LinearLayout>

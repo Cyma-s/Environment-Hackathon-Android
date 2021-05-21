@@ -4,15 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate;
 
-import android.app.DownloadManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -25,16 +23,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class QuestCommunityActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private QuestPostListAdapter adapter;
     private ArrayList<QuestPost> list = new ArrayList<>();
     private int len, cnt = 1, sum = 0;
-    private String postType = "any";
+    private String postType = "any", id;
     private int currentSize;
     private LinearLayoutManager layoutManager;
 
@@ -56,6 +51,17 @@ public class QuestCommunityActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
+
+        adapter.setItemClickListener(new OnQuestPostItemClickListener() {
+            @Override
+            public void OnItemClick(QuestPostListAdapter.ItemViewHolder holder, View view, int position) {
+                QuestPost post = adapter.getItem(position);
+                id = post.getPostingId();
+                Intent intent = new Intent(QuestCommunityActivity.this, QuestListContentActivity.class);
+                intent.putExtra("postId", id);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initScrollListener() {
@@ -109,7 +115,7 @@ public class QuestCommunityActivity extends AppCompatActivity {
                                 for(int i = 0; i<len; i++){
                                     if(currentSize - 1 >= nextLimit) break;
                                     JSONObject more_posts = posts.getJSONObject(i);
-                                    list.add(new QuestPost(more_posts.get("questName").toString(), more_posts.get("postTitle").toString(), more_posts.get("postContent").toString(),
+                                    list.add(new QuestPost(more_posts.get("postingId").toString(), more_posts.get("questName").toString(), more_posts.get("postTitle").toString(), more_posts.get("postContent").toString(),
                                             more_posts.get("picture").toString(), more_posts.get("date").toString(), more_posts.get("writerName").toString(),
                                             more_posts.getInt("authNum"), more_posts.getInt("pictureNum"), more_posts.getInt("reviewNum"), more_posts.get("type").toString()));
                                     currentSize++;
@@ -148,7 +154,7 @@ public class QuestCommunityActivity extends AppCompatActivity {
                     for(int i = 0; i<len; i++){
                         if(cnt == 1){
                             JSONObject object = posts.getJSONObject(i);
-                            QuestPost questPost = new QuestPost(object.get("questName").toString(), object.get("postTitle").toString(), object.get("postContent").toString(),
+                            QuestPost questPost = new QuestPost(object.get("postingId").toString(), object.get("questName").toString(), object.get("postTitle").toString(), object.get("postContent").toString(),
                                     object.get("picture").toString(), object.get("date").toString(), object.get("writerName").toString(),
                                     object.getInt("authNum"), object.getInt("pictureNum"), object.getInt("reviewNum"), object.get("type").toString());
                             list.add(questPost);
@@ -170,4 +176,5 @@ public class QuestCommunityActivity extends AppCompatActivity {
 
         queue.add(jsonObjectRequest);
     }
+
 }
