@@ -1,14 +1,26 @@
 package com.example.maesilnamu;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.content.CursorLoader;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DownloadManager;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -19,15 +31,24 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
 public class QuestPostWriteActivity extends AppCompatActivity {
     private EditText postWriteTitle, postWriteContent;
-    private ImageView postWriteButton;
+    private ImageView postWriteButton, addImageButton;
+    private RecyclerView recyclerView;
+    private final int CODE_ALBUM_REQUEST = 111;
+    private Bitmap bitmap;
+    private ArrayList<String> writePictures;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +57,10 @@ public class QuestPostWriteActivity extends AppCompatActivity {
         postWriteButton = (ImageView) findViewById(R.id.postWriteButton);
         postWriteTitle = (EditText) findViewById(R.id.postWriteTitle);
         postWriteContent = (EditText) findViewById(R.id.postWriteContent);
+        addImageButton = (ImageView) findViewById(R.id.addImageButton);
+        recyclerView = findViewById(R.id.imageRecyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.HORIZONTAL, false));
 
         postWriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,9 +69,8 @@ public class QuestPostWriteActivity extends AppCompatActivity {
                 writeTitle = postWriteTitle.getText().toString();
                 writeContent = postWriteContent.getText().toString();
                 questName = "퀘스트임";
-                picture = "picture 아직 안 만듬";
                 try {
-                    sendToServer(questName, writeTitle, writeContent, picture);
+                    sendToServer(questName, writeTitle, writeContent);
                     Intent intent = new Intent(QuestPostWriteActivity.this, QuestCommunityActivity.class);
                     finish();
                     startActivity(intent);
@@ -55,9 +79,83 @@ public class QuestPostWriteActivity extends AppCompatActivity {
                 }
             }
         });
+
+        addImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                writePictures = new ArrayList<>();
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                        "image/*");
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                startActivityForResult(intent, CODE_ALBUM_REQUEST);
+            }
+        });
     }
 
-    private void sendToServer(String questName, String title, String content, String picture) throws JSONException {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        String bitmapString = "";
+        if(requestCode == CODE_ALBUM_REQUEST && resultCode == RESULT_OK && data != null){
+            ArrayList<Uri> uriList = new ArrayList<>();
+            if(data.getClipData() != null){
+                ClipData clipData = data.getClipData();
+                if(clipData.getItemCount() > 3) {
+                    Toast.makeText(QuestPostWriteActivity.this, "사진은 3개까지 선택가능합니다",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                } else if(clipData.getItemCount() == 1){
+                    Uri filePath = clipData.getItemAt(0).getUri();
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                        bitmapString = bitmapToString(bitmap);
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    //String imgPath = getRealPathFromUri(filePath);
+                    writePictures.add(bitmapString);
+                    uriList.add(filePath);
+                } else if(clipData.getItemCount() > 1 && clipData.getItemCount() <= 3){
+                    for(int i = 0; i<clipData.getItemCount(); i++){
+                        String imgPath = getRealPathFromUri(clipData.getItemAt(i).getUri());
+                        try {
+                            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), clipData.getItemAt(i).getUri());
+                            bitmapString = bitmapToString(bitmap);
+                        } catch (Exception e){
+                            e.printStackTrace();
+                        }
+                        writePictures.add(bitmapString);
+                        uriList.add(clipData.getItemAt(i).getUri());
+                    }
+                }
+            }
+            UriImageAdapter adapter = new UriImageAdapter(uriList, QuestPostWriteActivity.this);
+            recyclerView.setAdapter(adapter);
+        }
+    }
+
+    String getRealPathFromUri(Uri uri){
+        String[] proj = {MediaStore.Images.Media.DATA};
+        CursorLoader loader = new CursorLoader(this, uri, proj, null, null, null);
+        Cursor cursor = loader.loadInBackground();
+        assert cursor != null;
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(column_index);
+        cursor.close();
+        return result;
+    }
+
+    public String bitmapToString(Bitmap bitmap){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String imageString = Base64.getEncoder().encodeToString(imageBytes);
+        return imageString;
+    }
+
+    private void sendToServer(String questName, String title, String content) throws JSONException {
         SharedPreferences sharedPreferences = getSharedPreferences("token", MODE_PRIVATE);
         String token = sharedPreferences.getString("Authorization", "");
         String url = getString(R.string.url) + "/auth-posting";
@@ -67,7 +165,16 @@ public class QuestPostWriteActivity extends AppCompatActivity {
         questPost.put("questName", questName);
         questPost.put("postTitle", title);
         questPost.put("postContent", content);
-        questPost.put("picture", picture);
+
+        JSONArray questPostPicture = new JSONArray();
+        for(int i = 0; i<writePictures.size(); i++){
+            questPostPicture.put(writePictures.get(i));
+        }
+        for(int i = writePictures.size(); i<3; i++){
+            questPostPicture.put("");
+        }
+
+        questPost.put("picture", questPostPicture);
 
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, questPost,
                 new Response.Listener<JSONObject>() {
