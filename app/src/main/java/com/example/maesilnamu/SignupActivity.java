@@ -34,9 +34,13 @@ public class SignupActivity extends AppCompatActivity {
                 String password = passwordText.getText().toString();
                 String passwordConfigure = passwordConfigureText.getText().toString();
 
+                if(password.equals(passwordConfigure)) {
+                    Intent next_intent = new Intent(SignupActivity.this, SignUpCreateProfile.class);
+                    next_intent.putExtra("emailText", email);
+                    next_intent.putExtra("password", password);
+                }
             }
         });
-
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
