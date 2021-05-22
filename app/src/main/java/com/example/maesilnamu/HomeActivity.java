@@ -87,6 +87,19 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        sidebar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(drawerView);
+            }
+        });
+        drawerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
+        drawerLayout.setDrawerListener(listener);
     }
 
     private void getBreedingInfo() {
@@ -205,57 +218,6 @@ public class HomeActivity extends AppCompatActivity {
         };
 
         queue.add(jsonObjectRequest);
-        sidebar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(drawerView);
-            }
-        });
-        drawerLayout.setDrawerListener(listener);
-        drawerView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        whiteground.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.closeDrawers();
-            }
-        });
-        mypagebutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent back_intent = new Intent(HomeActivity.this, MainActivity.class);
-                finish();
-                startActivity(back_intent);
-            }
-        });
-        rankbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent back_intent = new Intent(HomeActivity.this, MainActivity.class);
-                finish();
-                startActivity(back_intent);
-            }
-        });
-        shopbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent back_intent = new Intent(HomeActivity.this, MainActivity.class);
-                finish();
-                startActivity(back_intent);
-            }
-        });
-        postbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent back_intent = new Intent(HomeActivity.this, MainActivity.class);
-                finish();
-                startActivity(back_intent);
-            }
-        });
     }
 
     DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
@@ -266,6 +228,44 @@ public class HomeActivity extends AppCompatActivity {
 
         @Override
         public void onDrawerOpened(@NonNull @NotNull View drawerView) {
+            whiteground.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    drawerLayout.closeDrawers();
+                }
+            });
+            mypagebutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent back_intent = new Intent(HomeActivity.this, MainActivity.class);
+                    finish();
+                    startActivity(back_intent);
+                }
+            });
+            rankbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent back_intent = new Intent(HomeActivity.this, MainActivity.class);
+                    finish();
+                    startActivity(back_intent);
+                }
+            });
+            shopbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent back_intent = new Intent(HomeActivity.this, MainActivity.class);
+                    finish();
+                    startActivity(back_intent);
+                }
+            });
+            postbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent back_intent = new Intent(HomeActivity.this, MainActivity.class);
+                    finish();
+                    startActivity(back_intent);
+                }
+            });
 
 
         }

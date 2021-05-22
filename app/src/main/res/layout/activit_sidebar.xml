@@ -3,13 +3,13 @@
     android:layout_width="240dp"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:background="#1D000000"
     android:id="@+id/sidebar_open"
     android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="242dp"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical"
         >
         <LinearLayout
@@ -41,7 +41,8 @@
 
         <Button
             android:id="@+id/btn_mypage"
-            android:background="@color/light_grey"
+            android:backgroundTint="@color/white"
+            android:background="#00ff0000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="마이페이지"
@@ -52,7 +53,8 @@
 
         <Button
             android:id="@+id/btn_rank"
-            android:background="@color/light_grey"
+            android:backgroundTint="@color/white"
+            android:background="#00ff0000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
@@ -63,7 +65,8 @@
 
         <Button
             android:id="@+id/btn_shop"
-            android:background="@color/light_grey"
+            android:backgroundTint="@color/white"
+            android:background="#00ff0000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
@@ -74,7 +77,8 @@
 
         <Button
             android:id="@+id/btn_post"
-            android:background="@color/light_grey"
+            android:backgroundTint="@color/white"
+            android:background="#00ff0000"
             android:fontFamily="@font/nmed"
             android:textColor="@color/grey_black"
             android:layout_width="match_parent"
