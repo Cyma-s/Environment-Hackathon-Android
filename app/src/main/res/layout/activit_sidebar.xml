@@ -34,59 +34,55 @@
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/nmed"
                 android:text="닉네임"
-                android:textColor="@color/grey_black"
+                android:textColor="@color/black"
                 android:textSize="15sp" />
 
         </LinearLayout>
 
         <Button
             android:id="@+id/btn_mypage"
-            android:background="#1000000"
+            android:background="@color/light_grey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="마이페이지"
             android:gravity="left"
             android:fontFamily="@font/nmed"
-            android:textColor="@color/grey_black"
-            android:textSize="15sp"
-            android:text="마이페이지">
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
-        </Button>
         <Button
             android:id="@+id/btn_rank"
-            android:background="#1000000"
+            android:background="@color/light_grey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:fontFamily="@font/nmed"
             android:textColor="@color/grey_black"
             android:textSize="15sp"
-            android:text="랭킹">
+            android:text="랭킹"/>
 
-        </Button>
         <Button
             android:id="@+id/btn_shop"
-            android:background="#1000000"
+            android:background="@color/light_grey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:fontFamily="@font/nmed"
             android:textColor="@color/grey_black"
             android:textSize="15sp"
-            android:text="상점">
+            android:text="상점"/>
 
-        </Button>
         <Button
             android:id="@+id/btn_post"
-            android:background="#1000000"
+            android:background="@color/light_grey"
             android:fontFamily="@font/nmed"
             android:textColor="@color/grey_black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:textSize="15sp"
-            android:text="게시판">
+            android:text="게시판"/>
 
-        </Button>
 
     </LinearLayout>
     <LinearLayout
