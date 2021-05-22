@@ -9,11 +9,14 @@
 
     <ImageView
         android:id="@+id/sidebar"
+        android:background="#10000000"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
-        android:src="@drawable/menubutton"/>
+        android:src="@drawable/menubutton">
+
+    </ImageView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -132,4 +135,14 @@
             android:text="exp Up" />
     </LinearLayout>
 
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".HomeActivity">
+        <include layout = "@layout/activit_sidebar">
+
+        </include>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 </LinearLayout>
