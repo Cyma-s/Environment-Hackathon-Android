@@ -7,206 +7,168 @@
     android:orientation = "vertical"
     tools:context=".MypageActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:gravity="left"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/back_button"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/backbutton" />
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/backbutton"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="61dp">
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
 
         <ImageView
-            android:id="@+id/profile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/profile" />
+            android:id="@+id/maypage_user_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/profile"/>
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left"
             android:orientation="vertical"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="61dp">
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            >
 
             <TextView
-                android:id="@+id/nickname"
+                android:id="@+id/mypage_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="닉네임"
-                android:textColor="@color/grey_black"
+                android:text="사용자"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/nbold"/>
+
+            <TextView
+                android:id="@+id/mypage_user_ranking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:textSize="11sp"
+                android:textColor="@color/black"
+                android:text="랭킹 4 위"
                 android:fontFamily="@font/nbold"
-                android:textSize="20sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginTop="5dp"
+                />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/mypage_user_token_num"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:orientation="horizontal"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="61dp">
+                android:includeFontPadding="false"
+                android:textSize="9sp"
+                android:textColor="@color/black"
+                android:text="보유 매실토큰: 500 개"
+                android:fontFamily="@font/nmed"
+                android:layout_marginTop="2dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="-10dp"
-                    android:fontFamily="@font/nbold"
-                    android:text="랭킹"
-                    android:textColor="@color/grey_black"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/rank"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="-10dp"
-                    android:fontFamily="@font/nbold"
-                    android:text="4"
-                    android:textColor="@color/green"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="-10dp"
-                    android:fontFamily="@font/nbold"
-                    android:text="위"
-                    android:textColor="@color/grey_black"
-                    android:textSize="15sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:orientation="horizontal"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="61dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="보유매실토큰"
-                    android:textColor="@color/grey_black"
-                    android:fontFamily="@font/nbold"
-                    android:textSize="10sp"
-                    android:layout_marginTop="-10dp"
-                    android:layout_marginLeft="10dp"/>
-                <TextView
-                    android:id="@+id/token"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="400000"
-                    android:textColor="@color/green"
-                    android:fontFamily="@font/nbold"
-                    android:textSize="10sp"
-                    android:layout_marginTop="-10dp"
-                    android:layout_marginLeft="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="개"
-                    android:textColor="@color/grey_black"
-                    android:fontFamily="@font/nbold"
-                    android:textSize="10sp"
-                    android:layout_marginTop="-10dp"
-                    android:layout_marginLeft="10dp"/>
-            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-    +
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:gravity="left"
-        android:orientation="vertical">
-        <ImageView
-            android:id="@+id/line"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:src="@drawable/line" />
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/line"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:gravity="left"
+        android:layout_height="300dp"
         android:orientation="vertical">
-        />
-        <TextView
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="퀘스트목록"
-            android:textColor="@color/grey_black"
-            android:fontFamily="@font/nbold"
-            android:textSize="10sp"
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="20dp"/>
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="-10dp"
-            android:src="@drawable/backgroundgreen" />
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/backgroundgreen"
+                app:layout_constraintStart_toStartOf="@+id/mypage_myranking_text"
+                app:layout_constraintTop_toTopOf="@+id/mypage_myranking_text"
+                />
+
+            <TextView
+                android:id="@+id/mypage_myranking_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nbold"
+                android:includeFontPadding="false"
+                android:text="퀘스트 목록"
+                android:textColor="@color/grey_black"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Quest_post_recyclerview"
+            android:id="@+id/mypage_quest_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"/>
-
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="0dp"
-        android:gravity="left"
         android:orientation="vertical">
-        <TextView
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="내가쓴글"
-            android:textColor="@color/grey_black"
-            android:fontFamily="@font/nbold"
-            android:textSize="10sp"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="20dp"/>
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="-10dp"
-            android:src="@drawable/backgroundgreen" />
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/backgroundgreen"
+                app:layout_constraintStart_toStartOf="@+id/mypage_mypost_text"
+                app:layout_constraintTop_toTopOf="@+id/mypage_mypost_text"
+                />
+
+            <TextView
+                android:id="@+id/mypage_mypost_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nbold"
+                android:includeFontPadding="false"
+                android:text="내가 쓴 글"
+                android:textColor="@color/grey_black"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Write_post_recyclerview"
+            android:id="@+id/mypage_mypost_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"/>
 
     </LinearLayout>
 </LinearLayout>

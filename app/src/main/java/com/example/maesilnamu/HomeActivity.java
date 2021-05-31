@@ -237,16 +237,16 @@ public class HomeActivity extends AppCompatActivity {
             mypagebutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent back_intent = new Intent(HomeActivity.this, MainActivity.class);
-                    finish();
+                    Intent back_intent = new Intent(HomeActivity.this, MypageActivity.class);
+                    //finish();
                     startActivity(back_intent);
                 }
             });
             rankbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent back_intent = new Intent(HomeActivity.this, MainActivity.class);
-                    finish();
+                    Intent back_intent = new Intent(HomeActivity.this, RankingActivity.class);
+                    //finish();
                     startActivity(back_intent);
                 }
             });
