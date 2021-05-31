@@ -24,66 +24,55 @@
                 android:id="@+id/sidebar_profile"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/scrollbarprofile" />
+                android:src="@drawable/logo" />
 
             <TextView
                 android:id="@+id/sidbar_userName"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginBottom="4dp"
-                android:fontFamily="@font/nmed"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/nbold"
                 android:text="닉네임"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textColor="@color/grey_black"
+                android:includeFontPadding="false"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
-        <Button
+        <TextView
             android:id="@+id/btn_mypage"
-            android:backgroundTint="@color/white"
-            android:background="#00ff0000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="마이페이지"
-            android:gravity="left"
-            android:fontFamily="@font/nmed"
-            android:textColor="@color/black"
+            android:fontFamily="@font/nbold"
+            android:textColor="@color/grey_black"
             android:textSize="15sp" />
 
-        <Button
+        <TextView
             android:id="@+id/btn_rank"
-            android:backgroundTint="@color/white"
-            android:background="#00ff0000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:fontFamily="@font/nmed"
+            android:fontFamily="@font/nbold"
             android:textColor="@color/grey_black"
             android:textSize="15sp"
             android:text="랭킹"/>
 
-        <Button
+        <TextView
             android:id="@+id/btn_shop"
-            android:backgroundTint="@color/white"
-            android:background="#00ff0000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:fontFamily="@font/nmed"
+            android:fontFamily="@font/nbold"
             android:textColor="@color/grey_black"
             android:textSize="15sp"
             android:text="상점"/>
 
-        <Button
+        <TextView
             android:id="@+id/btn_post"
-            android:backgroundTint="@color/white"
-            android:background="#00ff0000"
-            android:fontFamily="@font/nmed"
+            android:fontFamily="@font/nbold"
             android:textColor="@color/grey_black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
             android:textSize="15sp"
             android:text="게시판"/>
 
@@ -101,7 +90,5 @@
 
         </ImageButton>
     </LinearLayout>
-
-
 
 </LinearLayout>

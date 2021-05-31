@@ -43,13 +43,13 @@ public class HomeActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private View drawerView;
     private ImageButton whiteground;
-    private Button mypagebutton, rankbutton, shopbutton, postbutton;
+    private TextView mypagebutton, rankbutton, shopbutton, postbutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        getBreedingInfo();
+        //getBreedingInfo();
 
 
         // exp Up
@@ -64,17 +64,17 @@ public class HomeActivity extends AppCompatActivity {
         drawerView = (View)findViewById(R.id.sidebar_open);
         sidebar = (ImageView)findViewById(R.id.sidebar);
         whiteground = (ImageButton)findViewById(R.id.backgroundwhite);
-        mypagebutton = (Button)findViewById(R.id.btn_mypage);
-        rankbutton = (Button)findViewById(R.id.btn_rank);
-        shopbutton = (Button)findViewById(R.id.btn_shop);
-        postbutton = (Button)findViewById(R.id.btn_post);
+        mypagebutton = (TextView)findViewById(R.id.btn_mypage);
+        rankbutton = (TextView)findViewById(R.id.btn_rank);
+        shopbutton = (TextView)findViewById(R.id.btn_shop);
+        postbutton = (TextView)findViewById(R.id.btn_post);
 
         missionConnect = (Button) findViewById(R.id.mission_connect);
         writeConnect = (Button) findViewById(R.id.mission_write);
         missionConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, QuestPostWriteActivity.class);
+                Intent intent = new Intent(HomeActivity.this, MypageActivity.class);
                 //finish();
                 startActivity(intent);
             }
@@ -237,33 +237,33 @@ public class HomeActivity extends AppCompatActivity {
             mypagebutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent back_intent = new Intent(HomeActivity.this, MypageActivity.class);
+                    Intent intent = new Intent(HomeActivity.this, MypageActivity.class);
                     //finish();
-                    startActivity(back_intent);
+                    startActivity(intent);
                 }
             });
             rankbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent back_intent = new Intent(HomeActivity.this, RankingActivity.class);
+                    Intent intent = new Intent(HomeActivity.this, RankingActivity.class);
                     //finish();
-                    startActivity(back_intent);
+                    startActivity(intent);
                 }
             });
             shopbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent back_intent = new Intent(HomeActivity.this, MainActivity.class);
+                    Intent intent = new Intent(HomeActivity.this, MainActivity.class);
                     finish();
-                    startActivity(back_intent);
+                    startActivity(intent);
                 }
             });
             postbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent back_intent = new Intent(HomeActivity.this, MainActivity.class);
+                    Intent intent = new Intent(HomeActivity.this, QuestCommunityActivity.class);
                     finish();
-                    startActivity(back_intent);
+                    startActivity(intent);
                 }
             });
 
