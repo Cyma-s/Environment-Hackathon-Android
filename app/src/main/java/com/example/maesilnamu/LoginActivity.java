@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, RankingActivity.class);
                                 finish();
                                 startActivity(intent);
                             }

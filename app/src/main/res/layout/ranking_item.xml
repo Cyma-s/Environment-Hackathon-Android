@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="30dp"
     android:orientation="horizontal"
     android:background="@drawable/bottom_stroke"
@@ -14,6 +15,7 @@
         android:text="1"
         android:textSize="10sp"
         android:layout_marginStart="25dp"
+        android:layout_weight="1"
         android:fontFamily="@font/nbold"/>
 
     <TextView
@@ -23,18 +25,20 @@
         android:textColor="@color/grey_black"
         android:text="사용자"
         android:textSize="10sp"
-        android:layout_marginStart="100dp"
+        android:layout_weight="1"
         android:fontFamily="@font/nbold"/>
-
     <TextView
-        android:id="@+id/raking_accumulate_point"
+        android:id="@+id/ranking_accumulate_point"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/grey_black"
         android:text="0pt"
         android:textSize="10sp"
-        android:layout_marginStart="160dp"
+        android:layout_weight="1"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/nbold"
+        android:gravity="right"
         />
+
 
 </LinearLayout>
