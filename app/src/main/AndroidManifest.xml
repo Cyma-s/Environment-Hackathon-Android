@@ -20,6 +20,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".SignUpCreateProfile" />
         <activity android:name=".QuestListContentActivity" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".MypageActivity"></activity>
         <activity android:name=".QuestPostWriteActivity" />
         <activity android:name=".QuestCommunityActivity" />
         <activity android:name=".HomeActivity" />
