@@ -76,16 +76,16 @@
 
 
         <ImageView
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="23dp"
             android:layout_marginBottom="16dp"
             android:src="@drawable/ranking_back"
             app:layout_constraintBottom_toBottomOf="@+id/mypage_myranking_text"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/mypage_myranking_text"
-            app:layout_constraintTop_toTopOf="@+id/mypage_myranking_text" />
+            app:layout_constraintTop_toTopOf="@+id/mypage_myranking_text"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/mypage_myranking_text"

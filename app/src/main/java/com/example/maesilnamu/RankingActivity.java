@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -22,15 +24,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RankingActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
-    private RankingAdapter adapter;
+    private RecyclerView recyclerView, myRankingRecyclerView;
+    private RankingAdapter adapter, myRankingAdapter;
     private ArrayList<RankingItem> list = new ArrayList<>();
-    private LinearLayoutManager layoutManager;
+    private ArrayList<RankingItem> myList = new ArrayList<>();
+    private LinearLayoutManager layoutManager, myRankingLayoutManager;
     private TextView rankingUserName, rankingUserPoint, rankingUserRanking;
     private boolean isLoading = false;
-    private int currentSize, totalNum;
+    private int totalNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +43,12 @@ public class RankingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ranking);
 
         recyclerView = findViewById(R.id.ranking_recyclerview);
+        myRankingRecyclerView = findViewById(R.id.mypage_myranking_recyclerview);
 
         loadRanking();
+        loadMyRanking();
         initAdapter();
-
+        initScrollListener();
 
         rankingUserName = findViewById(R.id.ranking_user_name);
         rankingUserRanking = findViewById(R.id.ranking_number);
@@ -50,9 +57,13 @@ public class RankingActivity extends AppCompatActivity {
 
     private void initAdapter(){
         adapter = new RankingAdapter(list);
+        myRankingAdapter = new RankingAdapter(myList);
         layoutManager = new LinearLayoutManager(this);
+        myRankingLayoutManager= new LinearLayoutManager(this);
         recyclerView.setAdapter(adapter);
+        myRankingRecyclerView.setAdapter(myRankingAdapter);
         recyclerView.setLayoutManager(layoutManager);
+        myRankingRecyclerView.setLayoutManager(myRankingLayoutManager);
     }
 
     private void initScrollListener(){
@@ -97,6 +108,38 @@ public class RankingActivity extends AppCompatActivity {
                 Toast.makeText(RankingActivity.this, "서버 오류입니다.", Toast.LENGTH_SHORT).show();
             }
         });
+        queue.add(jsonObjectRequest);
+    }
+
+    private void loadMyRanking(){
+        RequestQueue queue = Volley.newRequestQueue(RankingActivity.this);
+        SharedPreferences sharedPreferences = getSharedPreferences("token", MODE_PRIVATE);
+        String token = sharedPreferences.getString("Authorization", "");
+        String url = getString(R.string.url) + "/user/ranking/myRanking";
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    myList.add(new RankingItem(response.get("name").toString(), response.get("ranking").toString(), response.get("exp").toString() + " pt"));
+                    myRankingAdapter.notifyItemInserted(myList.size()-1);
+                    myRankingAdapter.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(RankingActivity.this, "서버 오류입니다.", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> heads = new HashMap<String, String>();
+                heads.put("Authorization", "Bearer " + token);
+                return heads;
+            }
+        };
         queue.add(jsonObjectRequest);
     }
 }
