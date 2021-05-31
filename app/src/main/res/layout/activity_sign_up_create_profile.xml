@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SignUpCreateProfile">
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/backbutton"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="프로필 설정"
+        android:fontFamily="@font/nbold"
+        android:textColor="@color/grey_black"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="프로필 사진"
+        android:fontFamily="@font/nbold"
+        android:textColor="@color/grey_black"
+        android:textSize="15sp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="닉네임"
+        android:fontFamily="@font/nbold"
+        android:textColor="@color/grey_black"
+        android:textSize="15sp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/signup_nickname"
+            android:hint="닉네임을 입력하세요"
+            android:textSize="10sp"
+            android:inputType="text"
+            android:fontFamily="@font/nbold"
+            android:background="@null"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="end">
+
+            <ImageView
+                android:id="@+id/signup_validity_check_button"
+                android:layout_width="60dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/validitycheckbutton"
+                android:textColor="@color/grey_black"
+                android:fontFamily="@font/nbold"
+                android:gravity="center"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/nickname_validation"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="인증이 완료되었습니다."
+        android:textSize="10sp"
+        android:textColor="#0000FF"
+        android:layout_marginLeft="30dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="지역"
+        android:fontFamily="@font/nbold"
+        android:textColor="@color/grey_black"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/location_spinner"
+            android:autofillHints="지역을 선택하세요"
+            android:entries="@array/location_array"
+            android:spinnerMode="dropdown"
+            android:layout_marginLeft="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            />
+
+        <EditText
+            android:id="@+id/signup_location"
+            android:hint="지역을 입력하세요"
+            android:textSize="12sp"
+            android:inputType="text"
+            android:fontFamily="@font/nbold"
+            android:background="@null"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/signup_button"
+        android:layout_gravity="center"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:text="회원가입"
+        android:textSize="12sp"
+        android:letterSpacing="0.4"
+        android:textColor="@color/grey_black"
+        android:fontFamily="@font/nbold"
+        android:gravity="center"
+        />
+
+</LinearLayout>

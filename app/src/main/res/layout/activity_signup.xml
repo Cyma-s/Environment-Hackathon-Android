@@ -1,9 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SignupActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/backbutton"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원가입"
+        android:fontFamily="@font/nbold"
+        android:textColor="@color/grey_black"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이메일 주소"
+        android:fontFamily="@font/nbold"
+        android:textColor="@color/grey_black"
+        android:textSize="15sp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/signup_email"
+            android:hint="이메일 주소를 입력하세요"
+            android:textSize="10sp"
+            android:inputType="text"
+            android:fontFamily="@font/nbold"
+            android:background="@null"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="end">
+
+            <ImageView
+                android:id="@+id/signup_email_validation_button"
+                android:layout_width="60dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/emailvalidationbutton"
+                android:textColor="@color/grey_black"
+                android:fontFamily="@font/nbold"
+                android:gravity="center"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/signup_code_verification"
+            android:hint="인증번호를 입력하세요"
+            android:textSize="10sp"
+            android:inputType="text"
+            android:fontFamily="@font/nbold"
+            android:background="@null"
+            android:visibility="invisible"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="end">
+
+            <ImageView
+                android:id="@+id/signup_code_verification_button"
+                android:visibility="invisible"
+                android:layout_width="60dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/codeverificationbutton"
+                android:textColor="@color/grey_black"
+                android:fontFamily="@font/nbold"
+                android:gravity="center"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/code_validation"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="인증이 완료되었습니다."
+        android:textSize="10sp"
+        android:textColor="#0000FF"
+        android:layout_marginLeft="30dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호"
+        android:fontFamily="@font/nbold"
+        android:textColor="@color/grey_black"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <EditText
+        android:id="@+id/signup_password"
+        android:hint="비밀번호를 입력하세요"
+        android:textSize="10sp"
+        android:inputType="textPassword"
+        android:fontFamily="@font/nbold"
+        android:background="@null"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:cursorVisible="true"
+        />
+
+    <TextView
+        android:id="@+id/error_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:textColor="#FF0000"
+        android:layout_marginLeft="30dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호 확인"
+        android:fontFamily="@font/nbold"
+        android:textColor="@color/grey_black"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <EditText
+        android:id="@+id/signup_passwordconfigure"
+        android:hint="비밀번호를 다시 한 번 입력하세요"
+        android:textSize="10sp"
+        android:inputType="textPassword"
+        android:fontFamily="@font/nbold"
+        android:background="@null"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:cursorVisible="true"
+        />
+
+    <TextView
+        android:id="@+id/error_password_configure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:textColor="#FF0000"
+        android:layout_marginLeft="30dp"
+        />
+
+    <Button
+        android:id="@+id/nextbutton"
+        android:layout_gravity="center"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:text="다음"
+        android:textSize="12sp"
+        android:letterSpacing="0.4"
+        android:textColor="@color/grey_black"
+        android:fontFamily="@font/nbold"
+        android:gravity="center"
+        />
+
+</LinearLayout>
