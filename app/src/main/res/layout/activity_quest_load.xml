@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".QuestLoadActivity">
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/backbutton"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/quest_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nbold"
+            android:text="일일 퀘스트 제목"
+            android:textSize="19sp"
+            android:textColorHint="#DDDDDD"
+            android:textColor="@color/grey_black"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#DDDDDD"
+            />
+
+        <TextView
+            android:id="@+id/quest_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nbold"
+            android:text="응 포인트 안 줘"
+            android:textSize="13sp"
+            android:textColorHint="#DDDDDD"
+            android:textColor="@color/grey_black"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#DDDDDD"
+            />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/quest_image"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@null"
+        android:textColor="@color/grey_black"
+        android:fontFamily="@font/nmed"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nbold"
+        android:text="퀘스트 설명"
+        android:textSize="15sp"
+        android:textColor="@color/grey_black"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#DDDDDD"
+        />
+
+    <TextView
+        android:id="@+id/quest_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nbold"
+        android:text="일일 퀘스트 설명"
+        android:textSize="13sp"
+        android:textColorHint="#DDDDDD"
+        android:textColor="@color/black"
+        android:layout_marginStart="30dp"
+        android:backgroundTint="#DDDDDD"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nbold"
+        android:text="퀘스트 달성 조건"
+        android:textSize="15sp"
+        android:textColor="@color/grey_black"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#DDDDDD"
+        />
+
+    <TextView
+        android:id="@+id/quest_condition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nbold"
+        android:text="일일 퀘스트 조건"
+        android:textSize="13sp"
+        android:textColorHint="#DDDDDD"
+        android:textColor="@color/black"
+        android:layout_marginStart="30dp"
+        android:backgroundTint="#DDDDDD"
+        />
+
+    <Button
+        android:id="@+id/quest_participation"
+        android:layout_gravity="center"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="70dp"
+        android:text="퀘스트 참여 인증하기"
+        android:textSize="13sp"
+        android:textAlignment="center"
+        android:letterSpacing="0.4"
+        android:textColor="@color/grey_black"
+        android:fontFamily="@font/nbold"
+        />
+
+</LinearLayout>
