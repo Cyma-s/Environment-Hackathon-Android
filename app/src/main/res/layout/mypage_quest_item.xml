@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="horizontal"
+    android:backgroundTint="@color/white">
+
+    <CheckBox
+        android:id="@+id/mypage_quest_checkbutton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/custom_checkbox"
+        android:button="@android:color/transparent" />
+
+    <TextView
+        android:id="@+id/mypage_quest_questName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="60dp"
+        android:text="퀘스트"
+        android:textColor="@color/grey_black"
+        android:textSize="13sp"
+        android:fontFamily="@font/nmed"/>
+
+</LinearLayout>
