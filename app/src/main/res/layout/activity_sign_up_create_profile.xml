@@ -39,11 +39,12 @@
         />
 
     <ImageView
+        android:id="@+id/signup_user_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:src="@drawable/logo" />
+        android:src="@drawable/addimagebutton" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -98,7 +99,7 @@
         android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="인증이 완료되었습니다."
+        android:text="사용할 수 있는 닉네임입니다"
         android:textSize="10sp"
         android:textColor="#0000FF"
         android:layout_marginLeft="30dp"
