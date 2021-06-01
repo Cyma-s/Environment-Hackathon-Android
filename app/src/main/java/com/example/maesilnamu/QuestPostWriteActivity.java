@@ -49,6 +49,8 @@ public class QuestPostWriteActivity extends AppCompatActivity {
     private final int CODE_ALBUM_REQUEST = 111;
     private Bitmap bitmap;
     private ArrayList<String> writePictures;
+    private int photoProgressInt = 0;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,6 +168,8 @@ public class QuestPostWriteActivity extends AppCompatActivity {
         questPost.put("postTitle", title);
         questPost.put("postContent", content);
 
+
+        /*
         JSONArray questPostPicture = new JSONArray();
         for(int i = 0; i<writePictures.size(); i++){
             questPostPicture.put(writePictures.get(i));
@@ -175,11 +179,17 @@ public class QuestPostWriteActivity extends AppCompatActivity {
         }
 
         questPost.put("picture", questPostPicture);
-
+           */
+        // 일단 글만 서버로 보냄
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, questPost,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        try {
+                            userId = response.get("id").toString(); // 글 보내고 서버에서 id 받아온다
+                        } catch (Exception e){
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -194,6 +204,35 @@ public class QuestPostWriteActivity extends AppCompatActivity {
                 return heads;
             }
         };
+
+        queue.add(jsonObjectRequest);
+
+        for(int i = 0; i<writePictures.size(); i++){ // 서버로 입력받은 사진 개수만큼 보내기
+            sendImageToServer(photoProgressInt);
+        }
+
+    }
+
+    private void sendImageToServer(int i) throws JSONException {  // 서버로 입력받은 사진 개수만큼 보내기
+        RequestQueue queue = Volley.newRequestQueue(this);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("", writePictures.get(i));
+        jsonObject.put("", userId);
+        photoProgressInt++;
+
+        String url = ""; // 사진 보내는 api
+
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(QuestPostWriteActivity.this, "내부 문제가 발생했습니다", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         queue.add(jsonObjectRequest);
     }
