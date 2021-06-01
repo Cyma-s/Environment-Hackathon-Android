@@ -155,7 +155,7 @@ public class QuestCommunityActivity extends AppCompatActivity {
                         if(cnt == 1){
                             JSONObject object = posts.getJSONObject(i);
                             QuestPost questPost = new QuestPost(object.get("postingId").toString(), object.get("questName").toString(), object.get("postTitle").toString(), object.get("postContent").toString(),
-                                    object.get("picture").toString(), object.get("date").toString(), object.get("writerName").toString(),
+                                    "", object.get("date").toString(), object.get("writerName").toString(),
                                     object.getInt("authNum"), object.getInt("pictureNum"), object.getInt("reviewNum"), object.get("type").toString());
                             list.add(questPost);
                             if(i == len - 1) cnt += 1;

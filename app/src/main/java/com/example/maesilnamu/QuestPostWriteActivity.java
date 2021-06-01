@@ -168,7 +168,6 @@ public class QuestPostWriteActivity extends AppCompatActivity {
         questPost.put("postTitle", title);
         questPost.put("postContent", content);
 
-
         /*
         JSONArray questPostPicture = new JSONArray();
         for(int i = 0; i<writePictures.size(); i++){
@@ -216,11 +215,12 @@ public class QuestPostWriteActivity extends AppCompatActivity {
     private void sendImageToServer(int i) throws JSONException {  // 서버로 입력받은 사진 개수만큼 보내기
         RequestQueue queue = Volley.newRequestQueue(this);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("", writePictures.get(i));
-        jsonObject.put("", userId);
+        jsonObject.put("postingId", userId);
+        jsonObject.put("image", writePictures.get(i));
+        Log.i("image", writePictures.get(i));
         photoProgressInt++;
 
-        String url = ""; // 사진 보내는 api
+        String url = getString(R.string.url) + "/auth-posting/image"; // 사진 보내는 api
 
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
