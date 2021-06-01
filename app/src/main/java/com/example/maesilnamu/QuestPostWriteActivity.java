@@ -14,6 +14,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -70,7 +71,7 @@ public class QuestPostWriteActivity extends AppCompatActivity {
                 String writeTitle, writeContent, questName, picture;
                 writeTitle = postWriteTitle.getText().toString();
                 writeContent = postWriteContent.getText().toString();
-                questName = "퀘스트임";
+                questName = "뭐지";
                 try {
                     sendToServer(questName, writeTitle, writeContent);
                     Intent intent = new Intent(QuestPostWriteActivity.this, QuestCommunityActivity.class);
@@ -206,9 +207,20 @@ public class QuestPostWriteActivity extends AppCompatActivity {
 
         queue.add(jsonObjectRequest);
 
-        for(int i = 0; i<writePictures.size(); i++){ // 서버로 입력받은 사진 개수만큼 보내기
-            sendImageToServer(photoProgressInt);
-        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0; i<writePictures.size(); i++){ // 서버로 입력받은 사진 개수만큼 보내기
+                    try {
+                        sendImageToServer(photoProgressInt);
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }, 1000);
+
 
     }
 
@@ -222,7 +234,8 @@ public class QuestPostWriteActivity extends AppCompatActivity {
 
         String url = getString(R.string.url) + "/auth-posting/image"; // 사진 보내는 api
 
-        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
@@ -230,7 +243,7 @@ public class QuestPostWriteActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(QuestPostWriteActivity.this, "내부 문제가 발생했습니다", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(QuestPostWriteActivity.this, "내부 문제가 발생했습니다", Toast.LENGTH_SHORT).show();
             }
         });
 
