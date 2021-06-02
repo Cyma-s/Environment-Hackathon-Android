@@ -1,20 +1,29 @@
 package com.example.maesilnamu;
 
+import android.graphics.Color;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import static java.security.AccessController.getContext;
+
 public class MyQuestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<MyQuest> list = new ArrayList<>();
     OnMyQuestItemClickListener listener;
+    private SparseBooleanArray completeItems = new SparseBooleanArray(0);
 
     public MyQuestAdapter(ArrayList<MyQuest> list) {
         this.list = list;
@@ -54,11 +63,16 @@ public class MyQuestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public static class MyQuestItemViewHolder extends RecyclerView.ViewHolder {
         private TextView questName;
         private CheckBox check;
-        private boolean isComplete = false;
+        //private boolean isComplete;
+        private LinearLayout questLayout;
+        private boolean questComplete;
+
         public MyQuestItemViewHolder(@NonNull View itemView, OnMyQuestItemClickListener listener) {
             super(itemView);
             questName = (TextView) itemView.findViewById(R.id.mypage_quest_questName);
             check = (CheckBox) itemView.findViewById(R.id.mypage_quest_checkbutton);
+            questLayout = (LinearLayout) itemView.findViewById(R.id.mypage_quest_item);
+            check.setClickable(false);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -71,9 +85,10 @@ public class MyQuestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         public void setItem(MyQuest quest) {
             String myPageQuestName = quest.getQuestName();
-            boolean questComplete = quest.isComplete();
+            questComplete = quest.isComplete();
             questName.setText(myPageQuestName);
             check.setChecked(questComplete);
+
         }
     }
 }
