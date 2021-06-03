@@ -61,16 +61,6 @@
             android:layout_marginStart="20dp"/>
 
         <TextView
-            android:id="@+id/btn_shop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nbold"
-            android:textColor="@color/grey_black"
-            android:textSize="15sp"
-            android:text="상점"
-            android:layout_marginStart="20dp"/>
-
-        <TextView
             android:id="@+id/btn_post"
             android:fontFamily="@font/nbold"
             android:textColor="@color/grey_black"
