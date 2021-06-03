@@ -144,7 +144,8 @@ public class SignUpCreateProfile extends AppCompatActivity {
         locationSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                locationText.setText(parent.getItemAtPosition(position).toString());
+                locationText.setText(setLocationText(parent.getItemAtPosition(position).toString()));
+                //locationText.setText();
                 checkLocation = true;
             }
 
@@ -153,6 +154,28 @@ public class SignUpCreateProfile extends AppCompatActivity {
                 locationText.setText("지역을 선택하세요.");
             }
         });
+    }
+
+    private String setLocationText(String location) {
+        String locationEditText="";
+        if(location.equals("서울특별시")) locationEditText = "서울";
+        else if(location.equals("경기도")) locationEditText = "경기";
+        else if(location.equals("강원도")) locationEditText = "강원";
+        else if(location.equals("충청남도")) locationEditText = "충남";
+        else if(location.equals("충청북도")) locationEditText = "충북";
+        else if(location.equals("광주광역시")) locationEditText = "광주";
+        else if (location.equals("전라남도")) locationEditText = "전남";
+        else if(location.equals("전라북도")) locationEditText = "전북";
+        else if(location.equals("경상북도")) locationEditText = "경북";
+        else if(location.equals("경상남도")) locationEditText = "경남";
+        else if(location.equals("부산광역시")) locationEditText = "부산";
+        else if(location.equals("인천광역시")) locationEditText = "인천";
+        else if(location.equals("대구광역시")) locationEditText = "대구";
+        else if(location.equals("울산광역시")) locationEditText = "울산";
+        else if(location.equals("대전광역시")) locationEditText = "대전";
+        else if(location.equals("세종특별자치시")) locationEditText = "세종";
+        else if(location.equals("제주특별자치도")) locationEditText = "제주";
+        return locationEditText;
     }
 
     @Override
