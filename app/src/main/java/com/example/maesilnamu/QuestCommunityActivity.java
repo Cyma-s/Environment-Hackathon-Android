@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -32,6 +34,7 @@ public class QuestCommunityActivity extends AppCompatActivity {
     private String postType = "any", id;
     private int currentSize;
     private LinearLayoutManager layoutManager;
+    private CheckBox check;
 
     private boolean isLoading = false;
 
@@ -40,10 +43,31 @@ public class QuestCommunityActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quest_community);
         recyclerView = findViewById(R.id.post_recyclerview);
+        check = findViewById(R.id.auth_check);
+
+        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setPostType();
+                list.clear();
+                getPostList();
+                initAdapter();
+                initScrollListener();
+            }
+        });
 
         getPostList();
         initAdapter();
         initScrollListener();
+
+    }
+
+    private void setPostType(){
+        if(check.isChecked()){
+            postType = "unAuth";
+        } else {
+            postType = "any";
+        }
     }
 
     private void initAdapter() {
