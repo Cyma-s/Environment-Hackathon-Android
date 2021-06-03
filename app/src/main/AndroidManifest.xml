@@ -26,13 +26,12 @@
             android:name=".QuestListContentActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".MypageActivity" />
-        <activity android:name=".QuestLoadActivity" />
         <activity android:name=".QuestPostWriteActivity" />
         <activity android:name=".QuestCommunityActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".HomeActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".HomeActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

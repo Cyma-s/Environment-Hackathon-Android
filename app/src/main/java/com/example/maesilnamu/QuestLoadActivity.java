@@ -72,7 +72,7 @@ public class QuestLoadActivity extends AppCompatActivity {
         });
     }
 
-    private void getQuestDetail(Intent intent) {
+    private void getQuestDetail(Intent intent) { /** 퀘스트 상세 정보 set */
         questName = intent.getStringExtra("questName");
         questDetailData = intent.getStringExtra("questExplanation");
         questConditionData = intent.getStringExtra("questCondition");
@@ -94,31 +94,5 @@ public class QuestLoadActivity extends AppCompatActivity {
         questDetail.setText(questDetailData);
         questPoint.setText(questPointData);
         questCondition.setText(questConditionData);
-    }
-
-    private void getQuestContent(){
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = getString(R.string.url) + ""; // 퀘스트 정보 가져오는 url
-        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    questTitle.setText(response.get("questName").toString());
-                    questPoint.setText(response.get("point").toString() + "pt");
-                    questDetail.setText(response.get("explanation").toString());
-                    questCondition.setText(response.get("condition").toString());
-                } catch (Exception e){
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(QuestLoadActivity.this, "오류입니다.", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        requestQueue.add(jsonObjectRequest);
     }
 }
