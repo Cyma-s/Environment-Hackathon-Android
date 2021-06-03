@@ -3,6 +3,8 @@ package com.example.maesilnamu;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import android.view.View;
@@ -22,11 +24,14 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import java.util.Base64;
+
 public class QuestLoadActivity extends AppCompatActivity {
     private Button participateButton;
     private ImageView backButton, questImage;
     private TextView questDetail, questCondition, questPoint, questTitle;
-    private String questDetailData, questConditionData, questPointData;
+    private String questDetailData, questConditionData, questPointData, questName, questDetailImage, questNumber;
+    private boolean isQuestComplete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +46,23 @@ public class QuestLoadActivity extends AppCompatActivity {
         questTitle = (TextView) findViewById(R.id.quest_title);
         questCondition = (TextView) findViewById(R.id.quest_condition);
 
-        this.getQuestDetail();
+        Intent intent = getIntent();
+        getQuestDetail(intent);
+        setQuestDetail();
 
         participateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nextIntent = new Intent(QuestLoadActivity.this, QuestPostWriteActivity.class);
-                finish();
-                startActivity(nextIntent);
+                if(isQuestComplete) {
+                    Toast.makeText(QuestLoadActivity.this, "이미 완료된 퀘스트입니다", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent nextIntent = new Intent(QuestLoadActivity.this, QuestPostWriteActivity.class);
+                    nextIntent.putExtra("questNumber", questNumber);
+                    nextIntent.putExtra("questName", questName);
+
+                    startActivity(nextIntent);
+                }
+
             }
         });
 
@@ -62,60 +76,36 @@ public class QuestLoadActivity extends AppCompatActivity {
         });
     }
 
-    private void getQuestDetail() {
-        String url = getString(R.string.url)+"미션 정보 받는 이메일 주소";
-
-        System.out.println(url);
-
-        /** 미션 정보 받아오는 코드 삽입 */ /*
-        RequestQueue queue = Volley.newRequestQueue(QuestLoadActivity.this);
-        final StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>(){
-                    @Override
-                    public void onResponse(String response) {
-                        Intent next_intent = new Intent(QuestLoadActivity.this, QuestPostWriteActivity.class);
-
-                        startActivity(next_intent);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(QuestLoadActivity.this, "오류입니다.", Toast.LENGTH_SHORT).show();
-            }
-        }); */
-
-        /**받아온 미션 정보는 다음 변수에 저장*/
-        questDetailData = "미션 정보";
-        questConditionData = "미션 확인 방법 정보";
-        questPointData = "환경 포인트 : " + "포인트 숫자" + "pt 제공";
-        questDetail.setText(questDetailData);
-        questPoint.setText(questPointData);
-        questCondition.setText(questDetailData);
+    private void getQuestDetail(Intent intent) { /** 퀘스트 상세 정보 set */
+        questName = intent.getStringExtra("questName");
+        questDetailData = intent.getStringExtra("questExplanation");
+        questConditionData = intent.getStringExtra("questCondition");
+        questDetailImage = intent.getStringExtra("questImage");
+        questNumber = intent.getStringExtra("questNumber");
+        questPointData = intent.getStringExtra("questPoint");
+        isQuestComplete = intent.getBooleanExtra("questComplete", false);
     }
 
-    private void getQuestContent(){
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = getString(R.string.url) + ""; // 퀘스트 정보 가져오는 url
-        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    questTitle.setText(response.get("questName").toString());
-                    questPoint.setText(response.get("point").toString() + "pt");
-                    questDetail.setText(response.get("explanation").toString());
-                    questCondition.setText(response.get("condition").toString());
-                } catch (Exception e){
-                    e.printStackTrace();
-                }
+    private Bitmap StringToBitmap(String encodedString){  /** 서버에서 받아온 이미지 비트맵으로 복구 */
+        try {
+            byte[] encodeByte = Base64.getDecoder().decode(encodedString);
+            Bitmap decodeBitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return decodeBitmap;
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(QuestLoadActivity.this, "오류입니다.", Toast.LENGTH_SHORT).show();
-            }
-        });
 
-        requestQueue.add(jsonObjectRequest);
+    private void setQuestDetail() {
+        /**받아온 미션 정보는 다음 변수에 저장*/
+        questPointData = "환경 포인트 : " + questPointData + "pt 제공";
+        questTitle.setText(questName);
+        questDetail.setText(questDetailData);
+        questPoint.setText(questPointData);
+        questCondition.setText(questConditionData);
+        Bitmap bitmap = StringToBitmap(questDetailImage);
+        questImage.setImageBitmap(bitmap);
     }
 }

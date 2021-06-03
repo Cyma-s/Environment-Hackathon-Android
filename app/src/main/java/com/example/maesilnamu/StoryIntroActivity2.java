@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,7 +16,7 @@ public class StoryIntroActivity2 extends AppCompatActivity {
     private LinearLayout introLayout;
     private TextView introText, nextButton;
 
-    private String tempIntroText1, tempIntroText2, tempIntroText3, tempIntroText4;
+    private String tempIntroText1="", tempIntroText2="", tempIntroText3, tempIntroText4;
     private String introString1 = "", introString2 = "", introString3 = "", introString4 = "";
     private int count = 0;
     private boolean toggle = false;
@@ -30,7 +31,7 @@ public class StoryIntroActivity2 extends AppCompatActivity {
         nextButton = (TextView) findViewById(R.id.nextbutton);
 
         introLayout.setBackgroundResource(R.drawable.intro_image_3);
-
+        introText.setMovementMethod(new ScrollingMovementMethod());
         this.setIntroText();
 
         Timer timer = new Timer();

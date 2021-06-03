@@ -20,23 +20,25 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".StoryIntroActivity3"></activity>
         <activity android:name=".QuestTutorialPostActivity" />
+        <activity android:name=".ShopActivity"></activity>
+        <activity android:name=".BigPictureActivity" />
         <activity android:name=".QuestTutorialActivity" />
         <activity android:name=".StoryIntroActivity2" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".StoryLoadActivity" />
         <activity android:name=".RankingActivity" />
         <activity android:name=".SignUpCreateProfile" />
+        <activity android:name=".QuestLoadActivity" />
         <activity
             android:name=".QuestListContentActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".MypageActivity" />
-        <activity android:name=".QuestLoadActivity" />
         <activity android:name=".QuestPostWriteActivity" />
         <activity android:name=".QuestCommunityActivity" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".StoryIntroActivity">
+        <activity android:name=".StoryIntroActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

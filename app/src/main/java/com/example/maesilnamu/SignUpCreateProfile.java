@@ -196,13 +196,6 @@ public class SignUpCreateProfile extends AppCompatActivity {
     private void sendToServer(String emailText, String passwordText, String bitmapString){
         String nicknameAuthentic = nickname;
         String location = locationText.getText().toString();
-/*
-        System.out.println("checkNickname: " + checkNickname);
-        System.out.println("checkLocation: " + checkLocation);
-        System.out.println("location: " + location);
-        System.out.println("nickname: " + nicknameAuthentic);
-        System.out.println("email: " + emailText);
-        System.out.println("password: " + passwordText); */
 
         if(checkNickname && checkLocation) {
             JSONObject infoForSignup = new JSONObject();

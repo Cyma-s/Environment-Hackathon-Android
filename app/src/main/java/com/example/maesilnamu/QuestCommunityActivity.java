@@ -8,8 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -34,6 +37,7 @@ public class QuestCommunityActivity extends AppCompatActivity {
     private String postType = "any", id;
     private int currentSize;
     private LinearLayoutManager layoutManager;
+    private CheckBox check;
 
     private boolean isLoading = false;
 
@@ -43,6 +47,19 @@ public class QuestCommunityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quest_community);
         recyclerView = findViewById(R.id.post_recyclerview);
         backButton = (ImageView)findViewById(R.id.back_button);
+        check = findViewById(R.id.auth_check);
+
+        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setPostType();
+                list.clear();
+                cnt = 1;
+                getPostList();
+                initAdapter();
+                initScrollListener();
+            }
+        });
 
         getPostList();
         initAdapter();
@@ -58,6 +75,14 @@ public class QuestCommunityActivity extends AppCompatActivity {
         });
     }
 
+    private void setPostType(){
+        if(check.isChecked()){
+            postType = "unAuth";
+        } else {
+            postType = "any";
+        }
+    }
+
     private void initAdapter() {
         adapter = new QuestPostListAdapter(list);
         layoutManager = new LinearLayoutManager(this);
@@ -68,9 +93,8 @@ public class QuestCommunityActivity extends AppCompatActivity {
             @Override
             public void OnItemClick(QuestPostListAdapter.ItemViewHolder holder, View view, int position) {
                 QuestPost post = adapter.getItem(position);
-                id = post.getPostingId();
                 Intent intent = new Intent(QuestCommunityActivity.this, QuestListContentActivity.class);
-                intent.putExtra("postId", id);
+                intent.putExtra("post", post);
                 startActivity(intent);
             }
         });
@@ -128,7 +152,7 @@ public class QuestCommunityActivity extends AppCompatActivity {
                                     if(currentSize - 1 >= nextLimit) break;
                                     JSONObject more_posts = posts.getJSONObject(i);
                                     list.add(new QuestPost(more_posts.get("postingId").toString(), more_posts.get("questName").toString(), more_posts.get("postTitle").toString(), more_posts.get("postContent").toString(),
-                                            more_posts.get("picture").toString(), more_posts.get("date").toString(), more_posts.get("writerName").toString(),
+                                            more_posts.get("picture").toString(), more_posts.get("date").toString(), more_posts.get("writerName").toString(), more_posts.get("writerCode").toString(),
                                             more_posts.getInt("authNum"), more_posts.getInt("pictureNum"), more_posts.getInt("reviewNum"), more_posts.get("type").toString()));
                                     currentSize++;
                                     if(i == len - 1) cnt += 1;
@@ -167,7 +191,7 @@ public class QuestCommunityActivity extends AppCompatActivity {
                         if(cnt == 1){
                             JSONObject object = posts.getJSONObject(i);
                             QuestPost questPost = new QuestPost(object.get("postingId").toString(), object.get("questName").toString(), object.get("postTitle").toString(), object.get("postContent").toString(),
-                                    "", object.get("date").toString(), object.get("writerName").toString(),
+                                    "", object.get("date").toString(), object.get("writerName").toString(), object.get("writerCode").toString(),
                                     object.getInt("authNum"), object.getInt("pictureNum"), object.getInt("reviewNum"), object.get("type").toString());
                             list.add(questPost);
                             if(i == len - 1) cnt += 1;

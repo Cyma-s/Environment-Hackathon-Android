@@ -6,6 +6,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
@@ -33,18 +35,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class HomeActivity extends AppCompatActivity {
+    private Button missionConnect, writeConnect;
     private Button missionButton1, missionButton2, missionButton3;
-    private ImageView sidebar, storyImage;
+    private ImageView sidebar, storyImage, sidebarUserImage;
     private DrawerLayout drawerLayout;
     private View drawerView;
     private ImageButton whiteground;
-    private TextView mypagebutton, rankbutton, shopbutton, postbutton;
+    private TextView mypagebutton, rankbutton, shopbutton, postbutton, sidebarName;
     private TextView storyTitle, storyContent1, storyContent2;
 
     private String storyTitleString = "Chapter 1 - 스토리 챕터 제목 or 번호를 추가하세요;";
@@ -75,8 +79,10 @@ public class HomeActivity extends AppCompatActivity {
         missionButton1 = (Button) findViewById(R.id.mission1);
         missionButton2 = (Button) findViewById(R.id.mission2);
         missionButton3 = (Button) findViewById(R.id.mission3);
-
+        sidebarUserImage = (ImageView) findViewById(R.id.sidebar_profile);
+        sidebarName = (TextView) findViewById(R.id.sidebar_userName);
         this.getStoryContents();
+        setSidebarUserImage();
 
         /** 여기서부터는 애니메이션으로 한 글자씩 스토리 내용 출력 */
         Timer timer = new Timer();
@@ -145,6 +151,53 @@ public class HomeActivity extends AppCompatActivity {
         drawerLayout.setDrawerListener(listener);
     }
 
+    private void setSidebarUserImage(){
+        SharedPreferences sharedPreferences = getSharedPreferences("token", MODE_PRIVATE);
+        String token = sharedPreferences.getString("Authorization", "");
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = getString(R.string.url) + "/user/userProfile";
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String userImageString = response.getString("profile");
+                            String userName = response.getString("name");
+                            Bitmap bitmap = StringToBitmap(userImageString);
+                            sidebarUserImage.setImageBitmap(bitmap);
+                            sidebarName.setText(userName);
+                        } catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> heads = new HashMap<String, String>();
+                heads.put("Authorization", "Bearer " + token);
+                return heads;
+            }
+        };
+
+        queue.add(jsonObjectRequest);
+    }
+
+    private Bitmap StringToBitmap(String encodedString){  /** 서버에서 받아온 이미지 비트맵으로 복구 */
+        try {
+            byte[] encodeByte = Base64.getDecoder().decode(encodedString);
+            Bitmap decodeBitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return decodeBitmap;
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
         @Override
         public void onDrawerSlide(@NonNull @NotNull View drawerView, float slideOffset) {
@@ -167,7 +220,6 @@ public class HomeActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-            /** 상점 기능 구현 완료 후 연결 */ /*
             shopbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -175,7 +227,7 @@ public class HomeActivity extends AppCompatActivity {
                     //finish();
                     startActivity(intent);
                 }
-            }); */
+            });
             rankbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -188,7 +240,7 @@ public class HomeActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(HomeActivity.this, QuestCommunityActivity.class);
-                    finish();
+                    //finish();
                     startActivity(intent);
                 }
             });
