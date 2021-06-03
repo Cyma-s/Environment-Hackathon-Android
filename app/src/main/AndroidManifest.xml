@@ -18,13 +18,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Maesilnamu"
         android:usesCleartextTraffic="true">
+        <activity android:name=".BigPictureActivity" />
         <activity android:name=".QuestTutorialActivity" />
         <activity android:name=".StoryIntroActivity2" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".StoryLoadActivity" />
         <activity android:name=".RankingActivity" />
         <activity android:name=".SignUpCreateProfile" />
-        <activity android:name=".QuestLoadActivity"/>
+        <activity android:name=".QuestLoadActivity" />
         <activity
             android:name=".QuestListContentActivity"
             android:windowSoftInputMode="adjustResize" />
@@ -33,8 +34,8 @@
         <activity android:name=".QuestCommunityActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".StoryIntroActivity">
+        <activity android:name=".StoryIntroActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class ContentImageAdapter extends RecyclerView.Adapter<ContentImageAdapter.ContentImageViewHolder> implements OnPictureClickListener{
+public class ContentImageAdapter extends RecyclerView.Adapter<ContentImageAdapter.ContentImageViewHolder>{
     private ArrayList<Bitmap> bitmaps;
+    OnPictureClickListener listener;
+
     public ContentImageAdapter(ArrayList<Bitmap> bitmaps) {
         this.bitmaps = bitmaps;
     }
@@ -22,7 +24,7 @@ public class ContentImageAdapter extends RecyclerView.Adapter<ContentImageAdapte
     public ContentImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.image_item, parent, false);
-        return new ContentImageViewHolder(view);
+        return new ContentImageViewHolder(view, listener);
     }
 
     @Override
@@ -45,16 +47,31 @@ public class ContentImageAdapter extends RecyclerView.Adapter<ContentImageAdapte
         return bitmaps.get(position);
     }
 
-    @Override
-    public void OnItemClick(ContentImageViewHolder holder, View view, int position) {
 
+    public void setPictureItemClickListener (OnPictureClickListener listener) {
+        this.listener = listener;
+    }
+
+
+    public void OnItemClick(ContentImageViewHolder holder, View view, int position) {
+        if(listener != null ){
+            listener.OnItemClick(holder, view, position);
+        }
     }
 
     public static class ContentImageViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
-        public ContentImageViewHolder(@NonNull View itemView) {
+        public ContentImageViewHolder(@NonNull View itemView, OnPictureClickListener listener) {
             super(itemView);
-            image = itemView.findViewById(R.id.recycler_image);
+            image = (ImageView) itemView.findViewById(R.id.recycler_image);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getBindingAdapterPosition();
+                    if(listener != null) listener.OnItemClick(ContentImageViewHolder.this, v, position);
+                }
+            });
         }
 
         public void setItem(Bitmap bitmap) {
