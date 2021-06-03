@@ -26,7 +26,7 @@ public class QuestLoadActivity extends AppCompatActivity {
     private Button participateButton;
     private ImageView backButton, questImage;
     private TextView questDetail, questCondition, questPoint, questTitle;
-    private String questDetailData, questConditionData, questPointData;
+    private String questDetailData, questConditionData, questPointData, questName, questDetailImage, questNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,10 @@ public class QuestLoadActivity extends AppCompatActivity {
         questTitle = (TextView) findViewById(R.id.quest_title);
         questCondition = (TextView) findViewById(R.id.quest_condition);
 
-        this.getQuestDetail();
+        Intent intent = getIntent();
+        getQuestContent();
+
+        setQuestDetail();
 
         participateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,35 +65,27 @@ public class QuestLoadActivity extends AppCompatActivity {
         });
     }
 
-    private void getQuestDetail() {
-        String url = getString(R.string.url)+"미션 정보 받는 이메일 주소";
+    private void getQuestDetail(Intent intent) {
+        questName = intent.getStringExtra("questName");
+        questDetailData = intent.getStringExtra("questExplanation");
+        questConditionData = intent.getStringExtra("questCondition");
+        questDetailImage = intent.getStringExtra("questImage");
+        questNumber = intent.getStringExtra("questNumber");
+        questPointData = intent.getStringExtra("questPoint");
+    }
 
-        System.out.println(url);
 
-        /** 미션 정보 받아오는 코드 삽입 */ /*
-        RequestQueue queue = Volley.newRequestQueue(QuestLoadActivity.this);
-        final StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>(){
-                    @Override
-                    public void onResponse(String response) {
-                        Intent next_intent = new Intent(QuestLoadActivity.this, QuestPostWriteActivity.class);
+    private void setQuestDetail() {
+        //String url = getString(R.string.url)+"미션 정보 받는 이메일 주소";
 
-                        startActivity(next_intent);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(QuestLoadActivity.this, "오류입니다.", Toast.LENGTH_SHORT).show();
-            }
-        }); */
+        //System.out.println(url);
 
         /**받아온 미션 정보는 다음 변수에 저장*/
-        questDetailData = "미션 정보";
-        questConditionData = "미션 확인 방법 정보";
-        questPointData = "환경 포인트 : " + "포인트 숫자" + "pt 제공";
+        questPointData = "환경 포인트 : " + questPointData + "pt 제공";
+        questTitle.setText(questName);
         questDetail.setText(questDetailData);
         questPoint.setText(questPointData);
-        questCondition.setText(questDetailData);
+        questCondition.setText(questConditionData);
     }
 
     private void getQuestContent(){

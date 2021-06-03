@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -34,6 +36,7 @@ public class QuestCommunityActivity extends AppCompatActivity {
     private String postType = "any", id;
     private int currentSize;
     private LinearLayoutManager layoutManager;
+    private CheckBox check;
 
     private boolean isLoading = false;
 
@@ -43,6 +46,19 @@ public class QuestCommunityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quest_community);
         recyclerView = findViewById(R.id.post_recyclerview);
         backButton = (ImageView)findViewById(R.id.back_button);
+        check = findViewById(R.id.auth_check);
+
+        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setPostType();
+                list.clear();
+                cnt = 1;
+                getPostList();
+                initAdapter();
+                initScrollListener();
+            }
+        });
 
         getPostList();
         initAdapter();
@@ -56,6 +72,14 @@ public class QuestCommunityActivity extends AppCompatActivity {
                 startActivity(back_intent);
             }
         });
+    }
+
+    private void setPostType(){
+        if(check.isChecked()){
+            postType = "unAuth";
+        } else {
+            postType = "any";
+        }
     }
 
     private void initAdapter() {
