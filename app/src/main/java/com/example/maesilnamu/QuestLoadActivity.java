@@ -27,6 +27,7 @@ public class QuestLoadActivity extends AppCompatActivity {
     private ImageView backButton, questImage;
     private TextView questDetail, questCondition, questPoint, questTitle;
     private String questDetailData, questConditionData, questPointData, questName, questDetailImage, questNumber;
+    private boolean isQuestComplete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +43,22 @@ public class QuestLoadActivity extends AppCompatActivity {
         questCondition = (TextView) findViewById(R.id.quest_condition);
 
         Intent intent = getIntent();
-        getQuestContent();
-
+        getQuestDetail(intent);
         setQuestDetail();
 
         participateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nextIntent = new Intent(QuestLoadActivity.this, QuestPostWriteActivity.class);
-                finish();
-                startActivity(nextIntent);
+                if(isQuestComplete) {
+                    Toast.makeText(QuestLoadActivity.this, "이미 완료된 퀘스트입니다", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent nextIntent = new Intent(QuestLoadActivity.this, QuestPostWriteActivity.class);
+                    nextIntent.putExtra("questNumber", questNumber);
+                    nextIntent.putExtra("questName", questName);
+
+                    startActivity(nextIntent);
+                }
+
             }
         });
 
@@ -72,6 +79,7 @@ public class QuestLoadActivity extends AppCompatActivity {
         questDetailImage = intent.getStringExtra("questImage");
         questNumber = intent.getStringExtra("questNumber");
         questPointData = intent.getStringExtra("questPoint");
+        isQuestComplete = intent.getBooleanExtra("questComplete", false);
     }
 
 

@@ -39,6 +39,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class HomeActivity extends AppCompatActivity {
+    private Button missionConnect, writeConnect;
     private Button missionButton1, missionButton2, missionButton3;
     private ImageView sidebar, storyImage;
     private DrawerLayout drawerLayout;
@@ -188,7 +189,7 @@ public class HomeActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(HomeActivity.this, QuestCommunityActivity.class);
-                    finish();
+                    //finish();
                     startActivity(intent);
                 }
             });

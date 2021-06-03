@@ -1,5 +1,6 @@
 package com.example.maesilnamu;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,13 +44,16 @@ public class QuestPostListAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof ItemViewHolder){
             addItem((ItemViewHolder) holder, position);
+            QuestPost post = list.get(position);
+            if(post.getAuthNum() == 3){
+                ((ItemViewHolder) holder).isAuth.setTextColor(Color.parseColor("#4D4D4D"));
+            } else {
+                ((ItemViewHolder) holder).isAuth.setTextColor(Color.parseColor("#EC2424"));
+            }
+
         } else if(holder instanceof LoadingViewHolder){
             showLoadingView((LoadingViewHolder) holder, position);
         }
-    }
-
-    public void addPost(QuestPost questPost) {
-        list.add(questPost);
     }
 
     @Override
@@ -103,8 +107,13 @@ public class QuestPostListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
 
         public void setItem(QuestPost post){
-            String authNum = String.valueOf(post.getAuthNum());
-            isAuth.setText(authNum);
+            int questAuthNum = post.getAuthNum();
+            if(questAuthNum==3) {
+                isAuth.setText("인증 완료");
+            }
+            else {
+                isAuth.setText("인증 필요");
+            }
             postTitle.setText(post.getPostTitle());
             postContent.setText(post.getPostContent());
         }
