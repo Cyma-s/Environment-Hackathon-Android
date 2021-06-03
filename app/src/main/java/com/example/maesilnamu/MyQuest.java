@@ -1,5 +1,7 @@
 package com.example.maesilnamu;
 
+import java.io.Serializable;
+
 public class MyQuest {
     String questName, point, explanation, condition, image;
     boolean isComplete;

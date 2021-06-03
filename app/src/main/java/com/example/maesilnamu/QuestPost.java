@@ -2,23 +2,25 @@ package com.example.maesilnamu;
 
 import androidx.annotation.NonNull;
 
-public class QuestPost {
-    private String questName, postTitle, postContent, date, userName, picture, type, postingId;
-    private int pictureNum, reviewNum, authNum;
+import java.io.Serializable;
 
-    public QuestPost(String postingId, String questName, String postTitle, String postContent, String picture, String date, String userName,
-                     int authNum, int pictureNum, int reviewNum, String type) {
-        this.postingId = postingId;
+public class QuestPost implements Serializable {
+    public String questName, postTitle, postContent, date, userName, picture, type, postingId, writerCode;
+    public int pictureNum, reviewNum, authNum;
+
+    public QuestPost(String postingId, String questName, String postTitle, String postContent, String picture, String date, String userName, String writerCode, int authNum, int pictureNum, int reviewNum, String type) {
         this.questName = questName;
         this.postTitle = postTitle;
         this.postContent = postContent;
         this.date = date;
         this.userName = userName;
-        this.authNum = authNum;
         this.picture = picture;
+        this.type = type;
+        this.postingId = postingId;
+        this.writerCode = writerCode;
         this.pictureNum = pictureNum;
         this.reviewNum = reviewNum;
-        this.type = type;
+        this.authNum = authNum;
     }
 
 
@@ -40,6 +42,14 @@ public class QuestPost {
 
     public int getPictureNum() {
         return pictureNum;
+    }
+
+    public String getWriterCode() {
+        return writerCode;
+    }
+
+    public void setWriterCode(String writerCode) {
+        this.writerCode = writerCode;
     }
 
     public void setPictureNum(int pictureNum) {

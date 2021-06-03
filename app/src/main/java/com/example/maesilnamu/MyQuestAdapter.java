@@ -20,10 +20,9 @@ import java.util.ArrayList;
 
 import static java.security.AccessController.getContext;
 
-public class MyQuestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private ArrayList<MyQuest> list = new ArrayList<>();
+public class MyQuestAdapter extends RecyclerView.Adapter<MyQuestAdapter.MyQuestItemViewHolder> {
+    private ArrayList<MyQuest> list;
     OnMyQuestItemClickListener listener;
-    private SparseBooleanArray completeItems = new SparseBooleanArray(0);
 
     public MyQuestAdapter(ArrayList<MyQuest> list) {
         this.list = list;
@@ -31,15 +30,22 @@ public class MyQuestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyQuestItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mypage_quest_item, parent, false);
 
         return new MyQuestItemViewHolder(view, listener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        addItem((MyQuestItemViewHolder) holder, position);
+    public void onBindViewHolder(@NonNull MyQuestItemViewHolder holder, int position) {
+        addItem(holder, position);
+        MyQuest quest = list.get(position);
+        if(quest.isComplete()) {
+            (holder).questLayout.setBackgroundColor(Color.parseColor("#17E9A8"));
+        }
+        else {
+            (holder).questLayout.setBackgroundColor(Color.WHITE);
+        }
     }
 
     @Override
@@ -61,11 +67,11 @@ public class MyQuestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     public static class MyQuestItemViewHolder extends RecyclerView.ViewHolder {
-        private TextView questName;
-        private CheckBox check;
+        public TextView questName;
+        public CheckBox check;
         //private boolean isComplete;
-        private LinearLayout questLayout;
-        private boolean questComplete;
+        public LinearLayout questLayout;
+        public boolean questComplete;
 
         public MyQuestItemViewHolder(@NonNull View itemView, OnMyQuestItemClickListener listener) {
             super(itemView);

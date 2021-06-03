@@ -14,8 +14,9 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="350dp"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -31,11 +32,16 @@
                 />
 
             <TextView
+                android:layout_marginTop="13dp"
                 android:id="@+id/post_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nmed"
                 android:layout_marginLeft="6dp"
+                android:layout_marginBottom="10dp"
+                android:includeFontPadding="false"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="글 내용"
                 android:textColor="@color/grey_black"
                 android:textSize="11sp"/>
@@ -47,14 +53,18 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:layout_marginTop="40dp"
+            android:layout_marginEnd="10dp"
+            android:paddingEnd="10dp"
             android:gravity="start">
             <TextView
                 android:id="@+id/is_auth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nbold"
+                android:includeFontPadding="false"
+                android:layout_marginTop="16dp"
                 android:text="인증 여부"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 android:textColor="@color/grey_black" />
         </LinearLayout>
 

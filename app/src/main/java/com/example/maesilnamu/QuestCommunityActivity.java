@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -81,9 +82,8 @@ public class QuestCommunityActivity extends AppCompatActivity {
             @Override
             public void OnItemClick(QuestPostListAdapter.ItemViewHolder holder, View view, int position) {
                 QuestPost post = adapter.getItem(position);
-                id = post.getPostingId();
                 Intent intent = new Intent(QuestCommunityActivity.this, QuestListContentActivity.class);
-                intent.putExtra("postId", id);
+                intent.putExtra("post", post);
                 startActivity(intent);
             }
         });
@@ -141,7 +141,7 @@ public class QuestCommunityActivity extends AppCompatActivity {
                                     if(currentSize - 1 >= nextLimit) break;
                                     JSONObject more_posts = posts.getJSONObject(i);
                                     list.add(new QuestPost(more_posts.get("postingId").toString(), more_posts.get("questName").toString(), more_posts.get("postTitle").toString(), more_posts.get("postContent").toString(),
-                                            more_posts.get("picture").toString(), more_posts.get("date").toString(), more_posts.get("writerName").toString(),
+                                            more_posts.get("picture").toString(), more_posts.get("date").toString(), more_posts.get("writerName").toString(), more_posts.get("writerCode").toString(),
                                             more_posts.getInt("authNum"), more_posts.getInt("pictureNum"), more_posts.getInt("reviewNum"), more_posts.get("type").toString()));
                                     currentSize++;
                                     if(i == len - 1) cnt += 1;
@@ -180,7 +180,7 @@ public class QuestCommunityActivity extends AppCompatActivity {
                         if(cnt == 1){
                             JSONObject object = posts.getJSONObject(i);
                             QuestPost questPost = new QuestPost(object.get("postingId").toString(), object.get("questName").toString(), object.get("postTitle").toString(), object.get("postContent").toString(),
-                                    "", object.get("date").toString(), object.get("writerName").toString(),
+                                    "", object.get("date").toString(), object.get("writerName").toString(), object.get("writerCode").toString(),
                                     object.getInt("authNum"), object.getInt("pictureNum"), object.getInt("reviewNum"), object.get("type").toString());
                             list.add(questPost);
                             if(i == len - 1) cnt += 1;

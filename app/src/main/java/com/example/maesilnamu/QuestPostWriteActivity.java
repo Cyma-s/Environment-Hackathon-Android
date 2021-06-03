@@ -169,17 +169,6 @@ public class QuestPostWriteActivity extends AppCompatActivity {
         questPost.put("postTitle", title);
         questPost.put("postContent", content);
 
-        /*
-        JSONArray questPostPicture = new JSONArray();
-        for(int i = 0; i<writePictures.size(); i++){
-            questPostPicture.put(writePictures.get(i));
-        }
-        for(int i = writePictures.size(); i<3; i++){
-            questPostPicture.put("");
-        }
-
-        questPost.put("picture", questPostPicture);
-           */
         // 일단 글만 서버로 보냄
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, questPost,
                 new Response.Listener<JSONObject>() {

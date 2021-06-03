@@ -37,7 +37,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
-    public String treeName, treeExp, maxExp, userExp, treeLevel, maxLevel, userToken;
     private Button missionConnect, writeConnect;
     private ImageView sidebar;
     private DrawerLayout drawerLayout;
@@ -144,7 +143,7 @@ public class HomeActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(HomeActivity.this, QuestCommunityActivity.class);
-                    finish();
+                    //finish();
                     startActivity(intent);
                 }
             });
