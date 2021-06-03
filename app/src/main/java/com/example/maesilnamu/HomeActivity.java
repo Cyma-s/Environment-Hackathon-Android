@@ -220,7 +220,6 @@ public class HomeActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-            /** 상점 기능 구현 완료 후 연결 */ /*
             shopbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -228,7 +227,7 @@ public class HomeActivity extends AppCompatActivity {
                     //finish();
                     startActivity(intent);
                 }
-            }); */
+            });
             rankbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
