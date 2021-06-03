@@ -70,7 +70,6 @@ public class StoryIntroActivity extends AppCompatActivity {
                                 nextButton.setVisibility(View.VISIBLE);
                             }
 
-
                             tempIntroText4 += introString4.charAt(count - introString1.length() - introString2.length() - introString3.length());
                             introText.setText(tempIntroText4);
                             count++;
