@@ -34,6 +34,7 @@ import com.sun.mail.imap.IMAPBodyPart;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
@@ -69,14 +70,13 @@ public class QuestListContentActivity extends AppCompatActivity {
         secondAuthImg = (ImageView) findViewById(R.id.second_auth_image);
         thirdAuthImg = (ImageView) findViewById(R.id.third_auth_image);
 
-        pictureRecyclerView.setLayoutManager(new LinearLayoutManager(this,
-                LinearLayoutManager.HORIZONTAL, false));
-        adapter = new ContentImageAdapter(bitmaps);
-        pictureRecyclerView.setAdapter(adapter);
+
         postId = post.getPostingId();
         setQuestContent();
         getPostPhotos(postId);
+        initAdapters();
         initScrollListener();
+
 
         authButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +84,32 @@ public class QuestListContentActivity extends AppCompatActivity {
                 authQuest(post);
             }
         });
+    }
+
+    private void initAdapters(){
+        pictureRecyclerView.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.HORIZONTAL, false));
+        adapter = new ContentImageAdapter(bitmaps);
+        pictureRecyclerView.setAdapter(adapter);
+
+        adapter.setPictureItemClickListener(new OnPictureClickListener() {
+            @Override
+            public void OnItemClick(ContentImageAdapter.ContentImageViewHolder holder, View view, int position) {
+                Bitmap bitmap = adapter.getItem(position);
+                String bitmapString = bitmapToString(bitmap);
+                Intent intent = new Intent(QuestListContentActivity.this, BigPictureActivity.class);
+                intent.putExtra("picture", bitmapString);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public String bitmapToString(Bitmap bitmap){ /** Bitmap을 String 으로 변환 */
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String imageString = Base64.getEncoder().encodeToString(imageBytes);
+        return imageString;
     }
 
     private void initScrollListener() {
