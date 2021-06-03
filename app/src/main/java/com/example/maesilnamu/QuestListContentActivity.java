@@ -1,5 +1,6 @@
 package com.example.maesilnamu;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,8 +13,10 @@ import android.graphics.Color;
 import android.media.session.MediaSession;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.sun.mail.imap.IMAPBodyPart;
 
 import org.json.JSONArray;
@@ -41,7 +46,8 @@ public class QuestListContentActivity extends AppCompatActivity {
     private ImageView userImage, authButton, firstAuthImg, secondAuthImg, thirdAuthImg;
     private RecyclerView pictureRecyclerView;
     private ArrayList<String> postPictures;
-    private Bitmap bitmap;
+    private ArrayList<Bitmap> bitmaps = new ArrayList<>();
+    private ContentImageAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +71,12 @@ public class QuestListContentActivity extends AppCompatActivity {
 
         pictureRecyclerView.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.HORIZONTAL, false));
-
+        adapter = new ContentImageAdapter(bitmaps);
+        pictureRecyclerView.setAdapter(adapter);
+        postId = post.getPostingId();
         setQuestContent();
+        getPostPhotos(postId);
+        initScrollListener();
 
         authButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,8 +86,24 @@ public class QuestListContentActivity extends AppCompatActivity {
         });
     }
 
+    private void initScrollListener() {
+        pictureRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+    }
+
     private void getPostPhotos(String postId) {
-        String url = getString(R.string.url) + "/auth-posting/pictures/" + post.getPostingId();
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = getString(R.string.url) + "/auth-posting/pictures/" + postId;
+        Log.i("content url", url);
 
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -85,13 +111,16 @@ public class QuestListContentActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray pictures = response.getJSONArray("pictures");
-                            int num = pictures.length();
+                            Log.i("picturesArray", pictures.toString());
+                            int num = response.getInt("num");
                             String image;
-                            for(int i =0; i<num; i++) {
+                            for(int i = 0; i<num; i++) {
                                 JSONObject object = pictures.getJSONObject(i);
                                 image = object.getString("image");
-                                bitmap = StringToBitmap(image);
-
+                                Log.i("image", image);
+                                bitmaps.add(StringToBitmap(image));
+                                adapter.notifyItemInserted(bitmaps.size() - 1);
+                                adapter.notifyDataSetChanged();
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -103,6 +132,8 @@ public class QuestListContentActivity extends AppCompatActivity {
 
             }
         });
+
+        queue.add(jsonObjectRequest);
     }
 
     private void setQuestContent(){  /** 퀘스트 내용 set */
@@ -188,7 +219,8 @@ public class QuestListContentActivity extends AppCompatActivity {
                             if(serverResponse.equals("처리되었습니다")) {
                                 setAuthImages(post.getAuthNum() + 1);
                             }
-                            Toast.makeText(QuestListContentActivity.this, serverResponse, Toast.LENGTH_SHORT).show();
+                            Snackbar.make(findViewById(R.id.questContentLayout), serverResponse, Snackbar.LENGTH_SHORT).show();
+
                         } catch (Exception e){
                             e.printStackTrace();
                         }

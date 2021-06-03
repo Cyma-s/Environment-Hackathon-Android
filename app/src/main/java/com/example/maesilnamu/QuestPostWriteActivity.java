@@ -174,7 +174,7 @@ public class QuestPostWriteActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             userId = response.get("id").toString(); // 글 보내고 서버에서 id 받아온다
-                            Log.i("id", userId);
+
                         } catch (Exception e){
                             e.printStackTrace();
                         }
@@ -219,7 +219,6 @@ public class QuestPostWriteActivity extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("postingId", userId);
         jsonObject.put("image", writePictures.get(i));
-        Log.i("image", userId);
         photoProgressInt++;
 
         String url = getString(R.string.url) + "/auth-posting/image"; // 사진 보내는 api

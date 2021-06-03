@@ -94,7 +94,6 @@ public class MyQuestAdapter extends RecyclerView.Adapter<MyQuestAdapter.MyQuestI
             questComplete = quest.isComplete();
             questName.setText(myPageQuestName);
             check.setChecked(questComplete);
-
         }
     }
 }

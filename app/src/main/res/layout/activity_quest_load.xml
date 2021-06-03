@@ -89,6 +89,7 @@
                 android:id="@+id/quest_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
                 android:fontFamily="@font/nbold"
                 android:text="일일 퀘스트 설명"
                 android:textSize="13sp"
@@ -120,6 +121,7 @@
                 android:textColorHint="#DDDDDD"
                 android:textColor="@color/black"
                 android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:backgroundTint="#DDDDDD"
                 />
 
