@@ -99,10 +99,6 @@ public class QuestLoadActivity extends AppCompatActivity {
 
 
     private void setQuestDetail() {
-        //String url = getString(R.string.url)+"미션 정보 받는 이메일 주소";
-
-        //System.out.println(url);
-
         /**받아온 미션 정보는 다음 변수에 저장*/
         questPointData = "환경 포인트 : " + questPointData + "pt 제공";
         questTitle.setText(questName);
