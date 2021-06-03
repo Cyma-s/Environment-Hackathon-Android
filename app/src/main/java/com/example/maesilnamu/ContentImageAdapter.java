@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class ContentImageAdapter extends RecyclerView.Adapter<ContentImageAdapter.ContentImageViewHolder> {
+public class ContentImageAdapter extends RecyclerView.Adapter<ContentImageAdapter.ContentImageViewHolder> implements OnPictureClickListener{
     private ArrayList<Bitmap> bitmaps;
     public ContentImageAdapter(ArrayList<Bitmap> bitmaps) {
         this.bitmaps = bitmaps;
@@ -43,6 +43,11 @@ public class ContentImageAdapter extends RecyclerView.Adapter<ContentImageAdapte
 
     public Bitmap getItem(int position) {
         return bitmaps.get(position);
+    }
+
+    @Override
+    public void OnItemClick(ContentImageViewHolder holder, View view, int position) {
+
     }
 
     public static class ContentImageViewHolder extends RecyclerView.ViewHolder {
