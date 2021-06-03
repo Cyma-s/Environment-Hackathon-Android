@@ -18,6 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Maesilnamu"
         android:usesCleartextTraffic="true">
+        <activity android:name=".StoryIntroActivity3"></activity>
+        <activity android:name=".QuestTutorialPostActivity" />
         <activity android:name=".ShopActivity"></activity>
         <activity android:name=".BigPictureActivity" />
         <activity android:name=".QuestTutorialActivity" />

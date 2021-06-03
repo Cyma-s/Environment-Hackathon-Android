@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".QuestPostWriteActivity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/backbutton"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right">
+        <ImageView
+            android:id="@+id/postWriteButton"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:src="@drawable/writebutton"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/postWriteTitle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nbold"
+            android:textSize="13sp"
+            android:textColorHint="#DDDDDD"
+            android:textColor="@color/grey_black"
+            android:hint="제목을 적어주세요 :)"
+            android:layout_marginStart="32dp"
+            android:backgroundTint="#DDDDDD"
+            />
+
+        <EditText
+            android:id="@+id/postWriteContent"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="32dp"
+            android:background="@null"
+            android:textColor="@color/grey_black"
+            android:fontFamily="@font/nmed"
+            android:hint="내용을 적어주세요!"
+            android:textSize="11sp"
+            android:gravity="top"
+            android:textColorHint="#DDDDDD" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/addImageButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/addimagebutton"
+                />
+            <TextView
+                android:id="@+id/addImageB"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="\n사진을 추가하세요"
+                android:textSize="15dp"
+                android:textAlignment="center"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/addimagebutton"
+                />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

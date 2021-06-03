@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tutorial_end_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nbold"
+        android:text="매실아이는 나무가 신기합니다. \n이 생물은 무엇을 위해 존재하는지, 어떤 가능성을 가지고 있는지, 또, 이 빛은 계속 자신을 도와줄 수 있는지, \n세상이 이런 작은 실천을 통해서 바뀔 수 있는지 궁금해 합니다. \n여러분들의 작은 실천이 매실아이의 현실을 바꿀 수 있습니다."
+        android:textAlignment="center"
+        android:textSize="23dp"
+        android:textColor="@color/white"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="60dp"
+        />
+
+    <Button
+        android:id="@+id/tutorial_end_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nbold"
+        android:text="시작하기"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="80dp"
+        />
+
+</LinearLayout>
