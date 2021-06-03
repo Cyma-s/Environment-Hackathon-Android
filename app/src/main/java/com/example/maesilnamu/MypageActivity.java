@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -36,7 +37,7 @@ public class MypageActivity extends AppCompatActivity {
     private ImageView userImage;
     private ImageView backButton;
     private TextView userName, ranking, tokenNum;
-    private String imageFile, questName, questContent, questCondition, questImage;
+    private String imageFile, questName, questContent, questCondition, questImage, questPoint, questNumber;
     private Bitmap bitmap;
     private RecyclerView questRecyclerView;
     private LinearLayoutManager questLayoutManager;
@@ -77,16 +78,36 @@ public class MypageActivity extends AppCompatActivity {
             @Override
             public void OnItemClick(MyQuestAdapter.MyQuestItemViewHolder holder, View view, int position) {
                 MyQuest quest = adapter.getItem(position);
-                questName = quest.getQuestName();
-                questCondition = quest.getCondition();
-                questContent = quest.getExplanation();
-                questImage = quest.getImage();
-                Intent intent = new Intent(MypageActivity.this, QuestListContentActivity.class);
-                intent.putExtra("questName", questName);
-                intent.putExtra("questCondition", questCondition);
-                intent.putExtra("questExplanation", questContent);
-                intent.putExtra("questImage", questImage);
-                startActivity(intent);
+                if(quest.isComplete()) {
+                    Toast.makeText(MypageActivity.this, "이미 완료된 퀘스트입니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    questName = quest.getQuestName();
+                    questCondition = quest.getCondition();
+                    questContent = quest.getExplanation();
+                    questImage = quest.getImage();
+                    questPoint = quest.getPoint();
+
+                    switch (position) {
+                        case 0 :
+                            questNumber = "first";
+                            break;
+                        case 1:
+                            questNumber = "second";
+                            break;
+                        case 2:
+                            questNumber = "third";
+                            break;
+                    }
+                    Intent intent = new Intent(MypageActivity.this, QuestLoadActivity.class);
+
+                    intent.putExtra("questNumber", questNumber);
+                    intent.putExtra("questName", questName);
+                    intent.putExtra("questCondition", questCondition);
+                    intent.putExtra("questExplanation", questContent);
+                    intent.putExtra("questImage", questImage);
+                    intent.putExtra("questPoint", questPoint);
+                    startActivity(intent);
+                }
             }
         });
     }
