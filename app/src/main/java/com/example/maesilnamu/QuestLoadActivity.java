@@ -65,7 +65,7 @@ public class QuestLoadActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent back_intent = new Intent(QuestLoadActivity.this, Mypage.class);
+                Intent back_intent = new Intent(QuestLoadActivity.this, HomeActivity.class);
                 finish();
                 startActivity(back_intent);
             }
