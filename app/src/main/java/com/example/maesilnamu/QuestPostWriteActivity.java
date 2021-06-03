@@ -51,7 +51,8 @@ public class QuestPostWriteActivity extends AppCompatActivity {
     private Bitmap bitmap;
     private ArrayList<String> writePictures;
     private int photoProgressInt = 0;
-    private String userId;
+    private String userId, questNumber, questName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +66,20 @@ public class QuestPostWriteActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.HORIZONTAL, false));
 
+        Intent intent = getIntent();
+        questNumber = intent.getStringExtra("questNumber");
+        questName = intent.getStringExtra("questName");
+
         postWriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String writeTitle, writeContent, questName, picture;
+                String writeTitle, writeContent, questNumberSend, picture, questNameSend;
                 writeTitle = postWriteTitle.getText().toString();
                 writeContent = postWriteContent.getText().toString();
-                questName = "뭐지";
+                questNumberSend = questNumber;
+                questNameSend = questName;
                 try {
-                    sendToServer(questName, writeTitle, writeContent);
+                    sendToServer(questNameSend, writeTitle, writeContent, questNumberSend);
                     Intent intent = new Intent(QuestPostWriteActivity.this, QuestCommunityActivity.class);
                     finish();
                     startActivity(intent);
@@ -158,10 +164,12 @@ public class QuestPostWriteActivity extends AppCompatActivity {
         return imageString;
     }
 
-    private void sendToServer(String questName, String title, String content) throws JSONException {
+    private void sendToServer(String questName, String title, String content, String questNumberSend) throws JSONException {
         SharedPreferences sharedPreferences = getSharedPreferences("token", MODE_PRIVATE);
         String token = sharedPreferences.getString("Authorization", "");
-        String url = getString(R.string.url) + "/auth-posting";
+        String url = getString(R.string.url) + "/auth-posting/" + questNumberSend;
+        Log.i("Questurl", url);
+        Log.i("QuestName", questName);
         RequestQueue queue = Volley.newRequestQueue(QuestPostWriteActivity.this);
 
         JSONObject questPost = new JSONObject();
@@ -214,6 +222,8 @@ public class QuestPostWriteActivity extends AppCompatActivity {
     }
 
     private void sendImageToServer(int i) throws JSONException {  // 서버로 입력받은 사진 개수만큼 보내기
+        SharedPreferences sharedPreferences = getSharedPreferences("token", MODE_PRIVATE);
+        String token = sharedPreferences.getString("Authorization", "");
         RequestQueue queue = Volley.newRequestQueue(this);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("postingId", userId);
@@ -234,7 +244,14 @@ public class QuestPostWriteActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 //Toast.makeText(QuestPostWriteActivity.this, "내부 문제가 발생했습니다", Toast.LENGTH_SHORT).show();
             }
-        });
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> heads = new HashMap<String, String>();
+                heads.put("Authorization", "Bearer " + token);
+                return heads;
+            }
+        };
 
         queue.add(jsonObjectRequest);
     }
