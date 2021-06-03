@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/mypage_quest_item"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="80dp"
     android:orientation="horizontal"
@@ -8,8 +9,8 @@
 
     <CheckBox
         android:id="@+id/mypage_quest_checkbutton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/custom_checkbox"
