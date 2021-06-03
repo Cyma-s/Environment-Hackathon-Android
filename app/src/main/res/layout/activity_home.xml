@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <ImageView
             android:id="@+id/sidebar"
             android:background="#10000000"
@@ -26,60 +27,99 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="40dp">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/story_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nbold"
+                android:text="Test"
+                android:textSize="19sp"
+                android:textColorHint="#DDDDDD"
+                android:textColor="@color/grey_black"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#DDDDDD"
+                />
+
+            <TextView
+                android:id="@+id/story_content_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:fontFamily="@font/nbold"
+                android:text="StoryLine1"
+                android:textSize="13sp"
+                android:textColorHint="#DDDDDD"
+                android:textColor="@color/black"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#DDDDDD"
+                />
 
-                <Button
-                    android:id="@+id/mission_connect"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nbold"
-                    android:text="미션 게시판으로 이동" />
+            <ImageView
+                android:id="@+id/story_image"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@null"
+                android:textColor="@color/grey_black"
+                android:fontFamily="@font/nmed"
+                android:gravity="center" />
 
-                <Button
-                    android:id="@+id/mission_write"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:fontFamily="@font/nbold"
-                    android:gravity="center"
-                    android:text="글쓰기로 이동" />
 
-            </LinearLayout>
+            <TextView
+                android:id="@+id/story_content_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nbold"
+                android:text="StoryLine2"
+                android:textSize="13sp"
+                android:textColorHint="#DDDDDD"
+                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:backgroundTint="#DDDDDD"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
 
                 <Button
-                    android:id="@+id/basicTreeSeed"
+                    android:id="@+id/mission1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="상점-기본나무씨앗" />
+                    android:layout_marginStart="30dp"
+                    android:text="미션 1" />
 
                 <Button
-                    android:id="@+id/winterTreeSeed"
+                    android:id="@+id/mission2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="상점-겨울나무씨앗" />
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="미션 2" />
 
                 <Button
-                    android:id="@+id/expUp"
+                    android:id="@+id/mission3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="exp Up" />
+                    android:layout_marginEnd="30dp"
+                    android:text="미션 3" />
             </LinearLayout>
+
         </LinearLayout>
+
     </LinearLayout>
 
     <include layout = "@layout/activity_sidebar"/>

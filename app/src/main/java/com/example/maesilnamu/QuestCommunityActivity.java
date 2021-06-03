@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 public class QuestCommunityActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private QuestPostListAdapter adapter;
+    private ImageView backButton;
     private ArrayList<QuestPost> list = new ArrayList<>();
     private int len, cnt = 1, sum = 0;
     private String postType = "any", id;
@@ -43,6 +45,7 @@ public class QuestCommunityActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quest_community);
         recyclerView = findViewById(R.id.post_recyclerview);
+        backButton = (ImageView)findViewById(R.id.back_button);
         check = findViewById(R.id.auth_check);
 
         check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -61,6 +64,14 @@ public class QuestCommunityActivity extends AppCompatActivity {
         initAdapter();
         initScrollListener();
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent back_intent = new Intent(QuestCommunityActivity.this, HomeActivity.class);
+                finish();
+                startActivity(back_intent);
+            }
+        });
     }
 
     private void setPostType(){
