@@ -22,21 +22,21 @@
 
             <ImageView
                 android:id="@+id/sidebar_profile"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/logo" />
 
             <TextView
-                android:id="@+id/sidbar_userName"
+                android:id="@+id/sidebar_userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/nbold"
                 android:text="닉네임"
                 android:textColor="@color/grey_black"
                 android:includeFontPadding="false"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 

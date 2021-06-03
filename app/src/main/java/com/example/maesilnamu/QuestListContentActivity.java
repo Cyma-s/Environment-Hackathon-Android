@@ -142,6 +142,40 @@ public class QuestListContentActivity extends AppCompatActivity {
         postTitle.setText(post.getPostTitle());
         postContent.setText(post.getPostContent());
         setAuthImages(post.getAuthNum());
+        setUserImage();
+    }
+
+    private void setUserImage() {
+        SharedPreferences sharedPreferences = getSharedPreferences("token", MODE_PRIVATE);
+        String token = sharedPreferences.getString("Authorization", "");
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = getString(R.string.url) + "/auth-posting/userProfile/" + postId;
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String userImageString = response.getString("profile");
+                            Bitmap bitmap = StringToBitmap(userImageString);
+                            userImage.setImageBitmap(bitmap);
+                        } catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> heads = new HashMap<String, String>();
+                heads.put("Authorization", "Bearer " + token);
+                return heads;
+            }
+        };
+        queue.add(jsonObjectRequest);
     }
 
     private void setAuthImages(int num){ /** 인증여부에 따라 인증 이미지로 바꿔주기*/
