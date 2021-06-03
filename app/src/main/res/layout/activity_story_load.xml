@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".QuestLoadActivity">
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/backbutton"
+        />
+
+    <TextView
+        android:id="@+id/story_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nbold"
+        android:textSize="19sp"
+        android:textColorHint="#DDDDDD"
+        android:textColor="@color/grey_black"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#DDDDDD"
+        />
+
+    <TextView
+        android:id="@+id/story_content_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nbold"
+        android:textSize="13sp"
+        android:textColorHint="#DDDDDD"
+        android:textColor="@color/black"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#DDDDDD"
+        />
+
+    <ImageView
+        android:id="@+id/story_image"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@null"
+        android:textColor="@color/grey_black"
+        android:fontFamily="@font/nmed"
+        android:gravity="center" />
+
+
+    <TextView
+        android:id="@+id/story_content_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nbold"
+        android:textSize="13sp"
+        android:textColorHint="#DDDDDD"
+        android:textColor="@color/black"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="#DDDDDD"
+        />
+
+    <Button
+        android:id="@+id/story_configuration"
+        android:layout_gravity="center"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:text="확인"
+        android:textSize="12sp"
+        android:textAlignment="center"
+        android:letterSpacing="0.6"
+        android:textColor="@color/grey_black"
+        android:fontFamily="@font/nbold"
+        />
+
+</LinearLayout>
