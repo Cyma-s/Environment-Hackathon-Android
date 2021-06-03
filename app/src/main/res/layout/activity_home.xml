@@ -80,6 +80,7 @@
                 android:textSize="13sp"
                 android:textColorHint="#DDDDDD"
                 android:textColor="@color/black"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:backgroundTint="#DDDDDD"

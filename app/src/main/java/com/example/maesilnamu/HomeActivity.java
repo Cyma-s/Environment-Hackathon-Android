@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private View drawerView;
     private ImageButton whiteground;
-    private TextView mypagebutton, rankbutton, postbutton;
+    private TextView mypagebutton, rankbutton, shopbutton, postbutton;
     private TextView storyTitle, storyContent1, storyContent2;
 
     private String storyTitleString = "Chapter 1 - 스토리 챕터 제목 or 번호를 추가하세요;";
@@ -67,6 +67,7 @@ public class HomeActivity extends AppCompatActivity {
         whiteground = (ImageButton)findViewById(R.id.backgroundwhite);
         mypagebutton = (TextView)findViewById(R.id.btn_mypage);
         rankbutton = (TextView)findViewById(R.id.btn_rank);
+        shopbutton = (TextView)findViewById(R.id.btn_shop);
         postbutton = (TextView)findViewById(R.id.btn_post);
         storyTitle = (TextView) findViewById(R.id.story_title);
         storyContent1 = (TextView) findViewById(R.id.story_content_1);
@@ -166,6 +167,15 @@ public class HomeActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+            /** 상점 기능 구현 완료 후 연결 */ /*
+            shopbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(HomeActivity.this, ShopActivity.class);
+                    //finish();
+                    startActivity(intent);
+                }
+            }); */
             rankbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -200,22 +210,7 @@ public class HomeActivity extends AppCompatActivity {
 
         System.out.println(url);
 
-        /** 미션 정보 받아오는 코드 삽입 */ /*
-        RequestQueue queue = Volley.newRequestQueue(StoryLoadActivity.this);
-        final StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>(){
-                    @Override
-                    public void onResponse(String response) {
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });  */
-
-        /**받아온 미션 정보는 다음 변수에 저장 */
+        /**받아온 스토리 내용 정보는 다음 변수에 저장 */
         storyTitleString = "스토리 챕터 번호 or 챕터 제목";
         storyString1 = "스토리 내용 텍스트 1";
         storyString2 = "스토리 내용 텍스트 2";

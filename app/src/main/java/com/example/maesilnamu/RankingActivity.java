@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,7 @@ public class RankingActivity extends AppCompatActivity {
     private ArrayList<RankingItem> list = new ArrayList<>();
     private ArrayList<RankingItem> myList = new ArrayList<>();
     private LinearLayoutManager layoutManager, myRankingLayoutManager;
+    private ImageView backButton;
     private TextView rankingUserName, rankingUserPoint, rankingUserRanking;
     private boolean isLoading = false;
     private int totalNum;
@@ -42,6 +46,7 @@ public class RankingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
 
+        backButton = (ImageView) findViewById(R.id.back_button);
         recyclerView = findViewById(R.id.ranking_recyclerview);
         myRankingRecyclerView = findViewById(R.id.mypage_myranking_recyclerview);
 
@@ -53,6 +58,15 @@ public class RankingActivity extends AppCompatActivity {
         rankingUserName = findViewById(R.id.ranking_user_name);
         rankingUserRanking = findViewById(R.id.ranking_number);
         rankingUserPoint = findViewById(R.id.ranking_accumulate_point);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent back_intent = new Intent(RankingActivity.this, HomeActivity.class);
+                finish();
+                startActivity(back_intent);
+            }
+        });
     }
 
     private void initAdapter(){

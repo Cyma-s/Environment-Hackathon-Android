@@ -18,9 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Maesilnamu"
         android:usesCleartextTraffic="true">
-        <activity android:name=".StoryLoadActivity">
-
-        </activity>
+        <activity android:name=".StoryLoadActivity" />
         <activity android:name=".RankingActivity" />
         <activity android:name=".SignUpCreateProfile" />
         <activity
@@ -30,10 +28,10 @@
         <activity android:name=".QuestLoadActivity" />
         <activity android:name=".QuestPostWriteActivity" />
         <activity android:name=".QuestCommunityActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
