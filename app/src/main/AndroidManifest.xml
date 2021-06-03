@@ -19,6 +19,7 @@
         android:theme="@style/Theme.Maesilnamu"
         android:usesCleartextTraffic="true">
         <activity android:name=".ShopActivity"></activity>
+        <activity android:name=".BigPictureActivity" />
         <activity android:name=".QuestTutorialActivity" />
         <activity android:name=".StoryIntroActivity2" />
         <activity android:name=".HomeActivity" />
@@ -34,8 +35,8 @@
         <activity android:name=".QuestCommunityActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".StoryIntroActivity">
+        <activity android:name=".StoryIntroActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
