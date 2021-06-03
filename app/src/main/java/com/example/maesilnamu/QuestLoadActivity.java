@@ -3,6 +3,8 @@ package com.example.maesilnamu;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import android.view.View;
@@ -21,6 +23,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
+
+import java.util.Base64;
 
 public class QuestLoadActivity extends AppCompatActivity {
     private Button participateButton;
@@ -82,6 +86,17 @@ public class QuestLoadActivity extends AppCompatActivity {
         isQuestComplete = intent.getBooleanExtra("questComplete", false);
     }
 
+    private Bitmap StringToBitmap(String encodedString){  /** 서버에서 받아온 이미지 비트맵으로 복구 */
+        try {
+            byte[] encodeByte = Base64.getDecoder().decode(encodedString);
+            Bitmap decodeBitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return decodeBitmap;
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     private void setQuestDetail() {
         //String url = getString(R.string.url)+"미션 정보 받는 이메일 주소";
@@ -94,5 +109,7 @@ public class QuestLoadActivity extends AppCompatActivity {
         questDetail.setText(questDetailData);
         questPoint.setText(questPointData);
         questCondition.setText(questConditionData);
+        Bitmap bitmap = StringToBitmap(questDetailImage);
+        questImage.setImageBitmap(bitmap);
     }
 }
