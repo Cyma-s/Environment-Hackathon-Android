@@ -1,6 +1,7 @@
 package com.example.maesilnamu;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.session.MediaSession;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,8 +26,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.sun.mail.imap.IMAPBodyPart;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +40,8 @@ public class QuestListContentActivity extends AppCompatActivity {
     private TextView questName, nickName, postTitle, postContent, postIsAuth;
     private ImageView userImage, authButton, firstAuthImg, secondAuthImg, thirdAuthImg;
     private RecyclerView pictureRecyclerView;
+    private ArrayList<String> postPictures;
+    private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,9 @@ public class QuestListContentActivity extends AppCompatActivity {
         secondAuthImg = (ImageView) findViewById(R.id.second_auth_image);
         thirdAuthImg = (ImageView) findViewById(R.id.third_auth_image);
 
+        pictureRecyclerView.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.HORIZONTAL, false));
+
         setQuestContent();
 
         authButton.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +76,36 @@ public class QuestListContentActivity extends AppCompatActivity {
         });
     }
 
-    private void setQuestContent(){
+    private void getPostPhotos(String postId) {
+        String url = getString(R.string.url) + "/auth-posting/pictures/" + post.getPostingId();
+
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray pictures = response.getJSONArray("pictures");
+                            int num = pictures.length();
+                            String image;
+                            for(int i =0; i<num; i++) {
+                                JSONObject object = pictures.getJSONObject(i);
+                                image = object.getString("image");
+                                bitmap = StringToBitmap(image);
+
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+    }
+
+    private void setQuestContent(){  /** 퀘스트 내용 set */
         questName.setText(post.getQuestName());
         nickName.setText(post.getUserName());
         postTitle.setText(post.getPostTitle());
@@ -75,7 +113,7 @@ public class QuestListContentActivity extends AppCompatActivity {
         setAuthImages(post.getAuthNum());
     }
 
-    private void setAuthImages(int num){
+    private void setAuthImages(int num){ /** 인증여부에 따라 인증 이미지로 바꿔주기*/
         if(num >= 3) {
             postIsAuth.setText("인증 완료");
             postIsAuth.setTextColor(Color.parseColor("#4D4D4D"));
@@ -96,7 +134,7 @@ public class QuestListContentActivity extends AppCompatActivity {
         }
     }
 
-    private Bitmap StringToBitmap(String encodedString){
+    private Bitmap StringToBitmap(String encodedString){  /** 서버에서 받아온 이미지 비트맵으로 복구 */
         try {
             byte[] encodeByte = Base64.getDecoder().decode(encodedString);
             Bitmap decodeBitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
@@ -136,7 +174,7 @@ public class QuestListContentActivity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
     }
 
-    private void authQuest(QuestPost post) {
+    private void authQuest(QuestPost post) {  /** 퀘스트 인증 버튼 눌렀을 경우 인증 진행사항 서버 통신 */
         RequestQueue queue = Volley.newRequestQueue(this);
         SharedPreferences sharedPreferences = getSharedPreferences("token", MODE_PRIVATE);
         String token = sharedPreferences.getString("Authorization", "");

@@ -76,6 +76,8 @@ public class QuestPostWriteActivity extends AppCompatActivity {
                 String writeTitle, writeContent, questNumberSend, picture, questNameSend;
                 writeTitle = postWriteTitle.getText().toString();
                 writeContent = postWriteContent.getText().toString();
+                Log.i("content", writeContent);
+                Log.i("title", writeTitle);
                 questNumberSend = questNumber;
                 questNameSend = questName;
                 try {
@@ -89,7 +91,7 @@ public class QuestPostWriteActivity extends AppCompatActivity {
             }
         });
 
-        addImageButton.setOnClickListener(new View.OnClickListener() {
+        addImageButton.setOnClickListener(new View.OnClickListener() {  /** 이미지 추가 버튼 */
             @Override
             public void onClick(View v) {
                 writePictures = new ArrayList<>();
@@ -103,7 +105,7 @@ public class QuestPostWriteActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {  /** 사진 선택하는 창 */
         super.onActivityResult(requestCode, resultCode, data);
         String bitmapString = "";
         if(requestCode == CODE_ALBUM_REQUEST && resultCode == RESULT_OK && data != null){
@@ -122,12 +124,10 @@ public class QuestPostWriteActivity extends AppCompatActivity {
                     } catch (Exception e){
                         e.printStackTrace();
                     }
-                    //String imgPath = getRealPathFromUri(filePath);
                     writePictures.add(bitmapString);
                     uriList.add(filePath);
                 } else if(clipData.getItemCount() > 1 && clipData.getItemCount() <= 3){
                     for(int i = 0; i<clipData.getItemCount(); i++){
-                        String imgPath = getRealPathFromUri(clipData.getItemAt(i).getUri());
                         try {
                             bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), clipData.getItemAt(i).getUri());
                             bitmapString = bitmapToString(bitmap);
@@ -144,19 +144,7 @@ public class QuestPostWriteActivity extends AppCompatActivity {
         }
     }
 
-    String getRealPathFromUri(Uri uri){
-        String[] proj = {MediaStore.Images.Media.DATA};
-        CursorLoader loader = new CursorLoader(this, uri, proj, null, null, null);
-        Cursor cursor = loader.loadInBackground();
-        assert cursor != null;
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        String result = cursor.getString(column_index);
-        cursor.close();
-        return result;
-    }
-
-    public String bitmapToString(Bitmap bitmap){
+    public String bitmapToString(Bitmap bitmap){ /** Bitmap을 String 으로 변환 */
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 10, baos);
         byte[] imageBytes = baos.toByteArray();
@@ -167,7 +155,7 @@ public class QuestPostWriteActivity extends AppCompatActivity {
     private void sendToServer(String questName, String title, String content, String questNumberSend) throws JSONException {
         SharedPreferences sharedPreferences = getSharedPreferences("token", MODE_PRIVATE);
         String token = sharedPreferences.getString("Authorization", "");
-        String url = getString(R.string.url) + "/auth-posting/" + questNumberSend;
+        String url = getString(R.string.url) + "/auth-posting";
         Log.i("Questurl", url);
         Log.i("QuestName", questName);
         RequestQueue queue = Volley.newRequestQueue(QuestPostWriteActivity.this);
@@ -176,6 +164,8 @@ public class QuestPostWriteActivity extends AppCompatActivity {
         questPost.put("questName", questName);
         questPost.put("postTitle", title);
         questPost.put("postContent", content);
+        questPost.put("mission", questNumberSend);
+        Log.i("questPost", questPost.toString());
 
         // 일단 글만 서버로 보냄
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, questPost,
@@ -184,6 +174,7 @@ public class QuestPostWriteActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             userId = response.get("id").toString(); // 글 보내고 서버에서 id 받아온다
+                            Log.i("id", userId);
                         } catch (Exception e){
                             e.printStackTrace();
                         }
@@ -205,7 +196,7 @@ public class QuestPostWriteActivity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
 
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() { /** 1초 텀을 두고 사진을 보낸다 */
             @Override
             public void run() {
                 for(int i = 0; i<writePictures.size(); i++){ // 서버로 입력받은 사진 개수만큼 보내기
@@ -228,7 +219,7 @@ public class QuestPostWriteActivity extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("postingId", userId);
         jsonObject.put("image", writePictures.get(i));
-        Log.i("image", writePictures.get(i));
+        Log.i("image", userId);
         photoProgressInt++;
 
         String url = getString(R.string.url) + "/auth-posting/image"; // 사진 보내는 api
