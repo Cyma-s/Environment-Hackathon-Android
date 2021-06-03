@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".QuestListContentActivity"
+    android:id="@+id/questContentLayout"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/back_button"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:src="@drawable/backbutton"
         />
 
@@ -29,7 +30,7 @@
         />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:orientation="horizontal">
@@ -51,6 +52,21 @@
             android:textSize="13sp"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="4dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end">
+            <ImageView
+                android:id="@+id/auth_button"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/authbutton"/>
+        </LinearLayout>
+
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -91,6 +107,66 @@
             />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/post_content_isAuth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="200dp"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/nbold"
+            android:textSize="13sp"
+            android:text="인증 여부"
+            android:textColor="@color/grey_black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_marginEnd="20dp">
+
+            <ImageView
+                android:id="@+id/first_auth_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/unauthbutton"
+                android:layout_marginStart="10dp"/>
+
+            <ImageView
+                android:id="@+id/second_auth_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/unauthbutton"
+                android:layout_marginStart="10dp"/>
+
+            <ImageView
+                android:id="@+id/third_auth_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/unauthbutton"
+                android:layout_marginStart="10dp"/>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/line"/>
 
     <LinearLayout
         android:layout_width="match_parent"
