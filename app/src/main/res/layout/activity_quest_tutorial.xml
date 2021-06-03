@@ -1,9 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuestTutorialActivity">
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tutorial_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nbold"
+        android:text="Tutorial"
+        android:textSize="19sp"
+        android:textColorHint="#DDDDDD"
+        android:textColor="@color/grey_black"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#DDDDDD"
+        />
+
+    <TextView
+        android:id="@+id/tutorial_content_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nbold"
+        android:text="매실아이는 또 그들을 바꾸고 싶어 합니다."
+        android:textSize="13sp"
+        android:textColorHint="#DDDDDD"
+        android:textColor="@color/black"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#DDDDDD"
+        />
+
+    <ImageView
+        android:id="@+id/tutorial_image"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/little_leaf"
+        android:textColor="@color/grey_black"
+        android:fontFamily="@font/nmed"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/tutorial_content_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nbold"
+        android:text="다음 미션 중 하나를 수행해보아요\n(1) 에어컨 온도를 적정온도로 사용하는 사진을 인증하여 인증게시판에 올린다.\n(2) 에어컨이 아닌 선풍기를 사용하는 사진을 인증하여 인증게시판에 올린다."
+        android:textSize="13sp"
+        android:textColorHint="#DDDDDD"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="#DDDDDD"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/mission1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="30dp"
+            android:text="미션 1" />
+
+        <Button
+            android:id="@+id/mission2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="30dp"
+            android:text="미션 2" />
+    </LinearLayout>
+
+</LinearLayout>
