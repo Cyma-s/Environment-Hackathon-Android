@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Maesilnamu</string>
+    <string name="app_name">매실나무</string>
     <string name="url">http://ec2-3-37-131-190.ap-northeast-2.compute.amazonaws.com:3000</string>
 </resources>
