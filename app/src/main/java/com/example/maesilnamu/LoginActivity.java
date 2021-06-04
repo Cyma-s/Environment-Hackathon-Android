@@ -87,11 +87,6 @@ public class LoginActivity extends AppCompatActivity {
                 });
 
                 queue.add(jsonObjectRequest);
-
-                for(int i = 0; i<20; i++){
-                    getMicroDust();
-                }
-                sendToServerArray();
             }
 
             private void saveToken(JSONObject response) throws JSONException {

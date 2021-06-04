@@ -84,7 +84,7 @@ public class StoryIntroActivity extends AppCompatActivity {
                 });
             }
         };
-        timer.schedule(timerTask, 0, 100);
+        timer.schedule(timerTask, 0, 50);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
