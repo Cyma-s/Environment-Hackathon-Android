@@ -16,7 +16,7 @@ public class ShopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
         backButton = (ImageView) findViewById(R.id.back_button);
-        setContentView(R.layout.activity_shop);
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

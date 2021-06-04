@@ -45,7 +45,7 @@ import java.util.Map;
 
 public class QuestPostWriteActivity extends AppCompatActivity {
     private EditText postWriteTitle, postWriteContent;
-    private ImageView postWriteButton, addImageButton;
+    private ImageView postWriteButton, addImageButton, backButton;
     private RecyclerView recyclerView;
     private final int CODE_ALBUM_REQUEST = 111;
     private Bitmap bitmap;
@@ -58,6 +58,7 @@ public class QuestPostWriteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quest_post_write);
+        backButton = (ImageView) findViewById(R.id.back_button);
         postWriteButton = (ImageView) findViewById(R.id.postWriteButton);
         postWriteTitle = (EditText) findViewById(R.id.postWriteTitle);
         postWriteContent = (EditText) findViewById(R.id.postWriteContent);
@@ -108,6 +109,16 @@ public class QuestPostWriteActivity extends AppCompatActivity {
                 startActivityForResult(intent, CODE_ALBUM_REQUEST);
             }
         });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent back_intent = new Intent(QuestPostWriteActivity.this, QuestLoadActivity.class);
+                finish();
+                startActivity(back_intent);
+            }
+        });
+
     }
 
     @Override

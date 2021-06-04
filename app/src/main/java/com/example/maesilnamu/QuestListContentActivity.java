@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.Image;
 import android.media.session.MediaSession;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -44,7 +45,7 @@ public class QuestListContentActivity extends AppCompatActivity {
     private String postId;
     private QuestPost post;
     private TextView questName, nickName, postTitle, postContent, postIsAuth;
-    private ImageView userImage, authButton, firstAuthImg, secondAuthImg, thirdAuthImg;
+    private ImageView userImage, authButton, backButton, firstAuthImg, secondAuthImg, thirdAuthImg;
     private RecyclerView pictureRecyclerView;
     private ArrayList<String> postPictures;
     private ArrayList<Bitmap> bitmaps = new ArrayList<>();
@@ -65,6 +66,7 @@ public class QuestListContentActivity extends AppCompatActivity {
         postIsAuth = (TextView) findViewById(R.id.post_content_isAuth);
         pictureRecyclerView = (RecyclerView) findViewById(R.id.content_recyclerviewContent);
         userImage = (ImageView) findViewById(R.id.content_userImage);
+        backButton = (ImageView) findViewById(R.id.back_button);
         authButton = (ImageView) findViewById(R.id.auth_button);
         firstAuthImg = (ImageView) findViewById(R.id.first_auth_image);
         secondAuthImg = (ImageView) findViewById(R.id.second_auth_image);
@@ -77,6 +79,15 @@ public class QuestListContentActivity extends AppCompatActivity {
         initAdapters();
         initScrollListener();
 
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent back_intent = new Intent(QuestListContentActivity.this, QuestCommunityActivity.class);
+                finish();
+                startActivity(back_intent);
+            }
+        });
 
         authButton.setOnClickListener(new View.OnClickListener() {
             @Override
