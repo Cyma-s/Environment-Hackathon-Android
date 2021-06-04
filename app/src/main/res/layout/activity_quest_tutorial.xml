@@ -42,7 +42,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:background="@drawable/little_leaf"
+        android:src="@drawable/fanimages"
         android:textColor="@color/grey_black"
         android:fontFamily="@font/nmed"
         android:gravity="center" />

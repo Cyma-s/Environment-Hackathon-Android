@@ -6,6 +6,7 @@ import android.app.DownloadManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,9 +18,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,6 +33,11 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private ImageView backButton;
     private EditText loginText, passwordText;
+    private int[] locationPmGrade;
+    private int[] locationNum;
+    private int cnt = 1;
+    private String[] location;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +47,12 @@ public class LoginActivity extends AppCompatActivity {
         backButton = (ImageView) findViewById(R.id.back_button);
         loginText = (EditText) findViewById(R.id.login_email);
         passwordText = (EditText) findViewById(R.id.login_password);
-
+        location  = getResources().getStringArray(R.array.location_short);
+        locationNum = new int[18];
+        for(int i = 0; i<18; i++){
+            locationNum[i] = 1;
+        }
+        locationPmGrade = new int[18];
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +88,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 queue.add(jsonObjectRequest);
 
+                for(int i = 0; i<20; i++){
+                    getMicroDust();
+                }
+                sendToServerArray();
             }
 
             private void saveToken(JSONObject response) throws JSONException {
@@ -121,6 +138,71 @@ public class LoginActivity extends AppCompatActivity {
                 Intent back_intent = new Intent(LoginActivity.this, MainActivity.class);
                 finish();
                 startActivity(back_intent);
+            }
+        });
+    }
+
+    private void getMicroDust() {
+        String url = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?serviceKey=ZaEuGtM8LYExIc%2FxBYwBYjrB%2BB4Lmetl1CRgp%2FPrJGfJRYGQec%2Fr2mqMRAaDuoRUuolev3%2BO%2FmLtvl34LS%2Be2A%3D%3D&returnType=json&sidoName=전국&pageNo=" + cnt;
+        Log.i("dataUrl", url);
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONObject body = response.getJSONObject("response");
+                            JSONArray array = body.getJSONArray("items");
+                            for (int i = 0; i<array.length(); i++) {
+                                for(int j = 0; j<17; j++){
+                                    JSONObject object = array.getJSONObject(i);
+                                    if(object.get("sidoName").equals(location[j])){
+                                        locationPmGrade[i] += Integer.parseInt(object.get("pm10Grade").toString());
+                                        locationNum[i]++;
+                                    }
+                                }
+                            }
+                            cnt++;
+                        } catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        queue.add(jsonObjectRequest);
+    }
+
+    private void sendToServerArray() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = getString(R.string.url) + "";
+        JSONArray jsonArray = new JSONArray();
+        for(int i = 0; i<17 ;i++){
+            JSONObject object = new JSONObject();
+            try {
+                object.put("sido", location[i]);
+                object.put("avg", locationPmGrade[i] / locationNum[i]);
+                jsonArray.put(object);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        Log.i("array", jsonArray.toString());
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonArray,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
             }
         });
     }
