@@ -73,21 +73,27 @@ public class QuestPostWriteActivity extends AppCompatActivity {
         postWriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String writeTitle, writeContent, questNumberSend, picture, questNameSend;
-                writeTitle = postWriteTitle.getText().toString();
-                writeContent = postWriteContent.getText().toString();
-                Log.i("content", writeContent);
-                Log.i("title", writeTitle);
-                questNumberSend = questNumber;
-                questNameSend = questName;
-                try {
-                    sendToServer(questNameSend, writeTitle, writeContent, questNumberSend);
-                    Intent intent = new Intent(QuestPostWriteActivity.this, QuestCommunityActivity.class);
-                    finish();
-                    startActivity(intent);
-                } catch (JSONException e){
-                    e.printStackTrace();
+                if(questNumber.equals("story")) {
+                    Intent intent1 = new Intent(QuestPostWriteActivity.this, NextStoryActivity.class);
+                    startActivity(intent1);
+                } else {
+                    String writeTitle, writeContent, questNumberSend, picture, questNameSend;
+                    writeTitle = postWriteTitle.getText().toString();
+                    writeContent = postWriteContent.getText().toString();
+                    Log.i("content", writeContent);
+                    Log.i("title", writeTitle);
+                    questNumberSend = questNumber;
+                    questNameSend = questName;
+                    try {
+                        sendToServer(questNameSend, writeTitle, writeContent, questNumberSend);
+                        Intent intent = new Intent(QuestPostWriteActivity.this, QuestCommunityActivity.class);
+                        finish();
+                        startActivity(intent);
+                    } catch (JSONException e){
+                        e.printStackTrace();
+                    }
                 }
+
             }
         });
 

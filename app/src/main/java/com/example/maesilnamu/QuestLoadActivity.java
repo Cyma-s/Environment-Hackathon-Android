@@ -47,12 +47,17 @@ public class QuestLoadActivity extends AppCompatActivity {
         questCondition = (TextView) findViewById(R.id.quest_condition);
 
         Intent intent = getIntent();
+
         getQuestDetail(intent);
         setQuestDetail();
 
         participateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(questNumber.equals("story")) {
+                    Intent intent1 = new Intent(QuestLoadActivity.this, NextStoryActivity.class);
+                    startActivity(intent1);
+                }
                 if(isQuestComplete) {
                     Toast.makeText(QuestLoadActivity.this, "이미 완료된 퀘스트입니다", Toast.LENGTH_SHORT).show();
                 } else {

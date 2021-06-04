@@ -42,7 +42,7 @@ public class StoryIntroActivity2 extends AppCompatActivity {
                     @Override
                     public void run() {
                         if (count < introString1.length()) {
-                            introLayout.setBackgroundResource(R.drawable.intro_image);
+                            introLayout.setBackgroundResource(R.drawable.introimage3);
                             tempIntroText1 += introString1.charAt(count);
 
                             introText.setText(tempIntroText1);
@@ -65,12 +65,12 @@ public class StoryIntroActivity2 extends AppCompatActivity {
                 });
             }
         };
-        timer.schedule(timerTask, 0, 100);
+        timer.schedule(timerTask, 0, 50);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StoryIntroActivity2.this, QuestTutorialActivity.class);
+                Intent intent = new Intent(StoryIntroActivity2.this, StoryIntroActivity3.class);
                 finish();
                 startActivity(intent);
             }
@@ -79,7 +79,7 @@ public class StoryIntroActivity2 extends AppCompatActivity {
 
     private void setIntroText() {
         introString1 = "매실아이는 빛에게 말합니다. 저 사람들이 사소하지만 너무나 중요한 분리수거를 제대로 하게 해달라고 말합니다. " +
-                "빛은 크게 갑자기 크게 빛나더니 매실아이를 감싸기 시작합니다" +
+                "빛은 갑자기 크게 빛나더니 매실아이를 감싸기 시작합니다" +
                 "                      ";
         introString2 = "아마도 이 빛은 매실아이의 세상과 관련이 있어 보입니다. 빛 속에서의 사람들은 분리수거를 하기 시작했고, 매실아이의 옆에는 작지만 초록색의 새싹이 돋아났기 때문이죠. " +
                 "매실아이는 이 새싹을 더 소중하게, 더 예쁘게 키우고 싶어 합니다. 다시 매실아이는 그 빛 속을 내다 보았습니다." +

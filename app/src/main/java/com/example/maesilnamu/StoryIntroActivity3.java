@@ -30,7 +30,7 @@ public class StoryIntroActivity3 extends AppCompatActivity {
         endButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StoryIntroActivity3.this, LoginActivity.class);
+                Intent intent = new Intent(StoryIntroActivity3.this, SignupActivity.class);
                 startActivity(intent);
             }
         });

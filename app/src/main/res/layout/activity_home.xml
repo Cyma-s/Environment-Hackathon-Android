@@ -97,25 +97,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginEnd="30dp"
                     android:layout_marginStart="30dp"
-                    android:text="미션 1" />
-
-                <Button
-                    android:id="@+id/mission2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="미션 2" />
+                    android:text="1번 미션" />
 
                 <Button
                     android:id="@+id/mission3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
-                    android:text="미션 3" />
+                    android:text="2번 미션" />
             </LinearLayout>
 
         </LinearLayout>
