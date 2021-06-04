@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView storyTitle, storyContent1, storyContent2;
     private boolean isChanged = false;
 
-    private String storyTitleString = "Chapter 1 - 스토리 챕터 제목 or 번호를 추가하세요;";
+    private String storyTitleString = "Chapter 1 - 스토리 챕터 제목 or 번호를 추가하세요";
     private String storyString1 = "여기에는 스토리 내용을 추가해줘요";
     private String storyString2 = "여기에는 스토리 내용을 더 넣거나 넣을 내용이 없으면 컴포넌트를 제거해줘요";
     private String tempTitleString = "";
